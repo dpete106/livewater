@@ -1,0 +1,7 @@
+# Begin password protection #
+# AuthName "Admin"
+# Require valid-user
+# AuthUserFile "/home/users/web/b170/ipg.egrettvorg/admin/.htpasswd"
+# AuthType basic
+# End password protection #
+
