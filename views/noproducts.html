@@ -1,0 +1,12 @@
+<div style="background-color:rgba(192,192,192);" class="jumbotron">
+  <h2><?php echo $category; ?></h2>
+  <p>Unfortunately there are no products to list in this category. Please use the links at the top of the page to continue shopping. We apologize for the inconvenience.</p>
+</div>
+<?php 
+if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
+	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
+}
+if (isset($_GET['type']) && ($_GET['type'] === 'coffee')) {
+	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
+}
+?>

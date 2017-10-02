@@ -1,0 +1,54 @@
+<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron"> <!-- jumbotron -->
+<!--<div align="center"><img class="img-responsive" src="/images2/checkout_indicator2.png" /></div>-->
+<div align="center"><img class="img-responsive" src="/livewater/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div>
+<br clear="all" />
+
+<?php // Display the cart:
+include('./views/checkout_cart.html');
+
+
+echo '<h2>Your Billing Information</h2><br>';
+
+echo '<form action="/livewater/billing.php" method="POST" id="billing_form">';
+
+if (isset($bankerror)) {
+	echo "<p class=\"alert alert-warning\">$bankerror</p>";
+} else {
+	echo '<span class="alert alert-warning" id="error_span"></span>';
+}
+
+include('./includes/form_functions.inc.php');
+?>
+<fieldset>
+
+	<div class="field"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" id="cc_number" autocomplete="off" value="6011111111111117" /></div>
+
+	<div class="field"><label for="exp_date"><strong>Expiration Date (MM/YYYY)</strong></label><br /><input type="text" id="cc_exp_month" autocomplete="off" value="12" />/<input type="text" id="cc_exp_year" autocomplete="off" value="2017"/></div>
+
+	<div class="field"><label for="cc_cvv"><strong>CVV</strong></label><br /><input type="text" id="cc_cvv" autocomplete="off" value="123" /></div>
+
+	<div class="field"><label for="cc_first_name"><strong>First Name </strong></label><br /><?php create_form_input('cc_first_name', 'text', $billing_errors, $values); ?></div>
+
+	<div class="field"><label for="cc_last_name"><strong>Last Name </strong></label><br /><?php create_form_input('cc_last_name', 'text', $billing_errors, $values); ?></div>
+	
+	<div class="field"><label for="cc_address"><strong>Street Address </strong></label><br /><?php create_form_input('cc_address', 'text', $billing_errors, $values); ?></div>
+
+	<div class="field"><label for="cc_city"><strong>City </strong></label><br /><?php create_form_input('cc_city', 'text', $billing_errors, $values); ?></div>
+
+	<div class="field"><label for="cc_state"><strong>State </strong></label><br /><?php create_form_input('cc_state', 'select', $billing_errors, $values); ?></div>
+
+	<div class="field"><label for="cc_zip"><strong>Zip Code </strong></label><br /><?php create_form_input('cc_zip', 'text', $billing_errors, $values); ?></div>
+		
+	<br clear="all" />
+	
+<div align="center" id="submit_div"><input type="submit" value="Place Order" class="btn btn-info" /></div></fieldset></form>
+<div>By clicking this button, your order will be completed and your credit card will be charged.</div>
+</div> <!-- jumbotron -->
+<?php echo '<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron">'; 
+echo '<p>Please enter your billing information below. Then click the button to complete your order. For your security, we will not store your billing information in any way. We accept Visa, MasterCard, American Express, and Discover.</p>';
+echo '</div>'; ?> 
+
+<script type="text/javascript">
+Stripe.setPublishableKey('pk_test_JRGK5txjD4IIgyJU5ztDwSz1');
+</script>
+<script type="text/javascript" src="/livewater/js/billing.js"></script>

@@ -1,0 +1,44 @@
+<?php
+echo '<div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">';
+echo '<p>Welcome to the Farm Stand!<br>Please use the links at the top to browse through our catalog. </p>';
+echo '<div ><img class="img-responsive"  src="/livewater/images/farmstand.jpg" style="position: relative;width: 100%;height: auto;" /></div>';
+echo '<h2 style="color: #00ff00;position: absolute;top:350px;left: 0;width: 100%;"></h2>
+<p>If you\'ve been here before, you can find things you bookmarked by clicking on your Saved for Later and Cart links. </p>';
+echo '</div></div>';
+
+echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+
+echo '<div class="wrapper">';
+
+
+if (mysqli_num_rows($r) > 0) {
+	
+	echo '<dl class="special fright">
+		<dt><a href="/shopBoot/sales/">Sale Items</a></dt>';
+	echo '</dl>';
+echo '<ul class="list-unstyled">';
+
+   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+   	echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+   }
+	
+	echo '</ul>';
+
+} // End of mysqli_num_rows() IF.
+echo '</div>'; // wrapper
+echo '</div>';
+
+echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+
+echo '<h3>About Livewater Farm & Dairy</h3>
+<p>Livewater Farm is a grass-based dairy operation producing 100% grass-fed raw cow\'s milk, in addition to fresh grass-fed beef, pasture-raised chicken, milk-fed pork, free range eggs, garden vegetables, maple syrup, canned goods, and a wide variety of other sustainably produced farm products. In 2015, Livewater Dairy was established as a farmstead dairy processor located on Livewater Farm. Using only the freshest, 100% grass-fed milk produced on site by Livewater Farm, Livewater Dairy produces fresh cheese, aged raw milk cheese, and sweet cream butter.</p>';
+
+echo '</div>';
+
+echo     '<div class="row marketing">
+        <div class="col-lg-6">
+        </div>
+
+        <div class="col-lg-6">
+        </div>
+      </div>';
