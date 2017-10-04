@@ -1,6 +1,6 @@
 <?php
 // Require the configuration before any PHP code:
-require('./includesBoot/config.inc.php');
+require('./includes/config.inc.php');
 
 // Check for, or create, a user session:
 if (isset($_COOKIE['SESSION']) && (strlen($_COOKIE['SESSION']) === 32)) {
@@ -14,14 +14,14 @@ if (isset($_COOKIE['SESSION']) && (strlen($_COOKIE['SESSION']) === 32)) {
 setcookie('SESSION', $uid, time()+(60*60*24*30));
 
 // Include the header file:
-$page_title = 'Cheese - Saved for Later';
-include('./includesBoot/header.html');
+$page_title = 'Wishlist - saved items';
+include('./includes/header.html');
 
 require('./mysql.inc.php');
 
 
 // Need the utility functions:
-include('./includesBoot/product_functions.inc.php');
+include('./includes/product_functions.inc.php');
 
 // If there's a SKU value in the URL, break it down into its parts:
 if (isset($_GET['sku'])) {
@@ -109,11 +109,11 @@ if (!$r) echo mysqli_error($dbc);
 
 
 if (mysqli_num_rows($r) > 0) { // Products to show!
-	include('./viewsBoot/saved.html');
+	include('./views/wishlist.html');
 } else { // Empty cart!
-	include('./viewsBoot/emptylist.html');
+	include('./views/emptylist.html');
 }
 
 // Finish the page:
-include('./includesBoot/footer.html');
+include('./includes/footer.html');
 ?>

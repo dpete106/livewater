@@ -1,16 +1,67 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/livewater/favicon.ico">
 
-require('./includes/config.inc.php');
+    <title>Livewater Farm & Dairy</title>
 
-$page_title = 'Coffee - Wouldn\'t You Love a Cup Right Now?';
-include('./includes/header.html');
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="http://localhost/livewater/bootstrap-4-dist/js/bootstrap.min.js"></script>
 
-require('./mysql.inc.php');
+    <!-- Bootstrap core CSS -->
+    <link href="http://localhost/livewater/bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet">
 
-$q = "(SELECT CONCAT('G', ncp.id) AS sku, CONCAT('$', FORMAT(sa.price/100, 2)) AS sale_price, ncc.category, ncp.image, ncp.name FROM sales AS sa INNER JOIN non_coffee_products AS ncp ON sa.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id WHERE sa.product_type='goodies' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2) UNION (SELECT CONCAT('C', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.product_type='coffee' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)";
-$r = mysqli_query($dbc, $q);
+    <!-- Custom styles for this template -->
+    <link href="http://localhost/livewater/css/narrow-jumbotron.css" rel="stylesheet">
+    <link href="http://localhost/livewater/css/navbar.css" rel="stylesheet">
+    <link href="http://localhost/livewater/css/cover.css" rel="stylesheet">
+  </head>
 
-include('./views/home.html');
+  <body>
 
-include('./includes/footer.html');
-?>
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Livewater Farm & Dairy</h3>
+              <nav class="nav nav-masthead">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="/livewater/barnyard/">Blog</a>
+                <a class="nav-link" href="/livewater/stand/">Shop Farm Stand</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h3 class="cover-heading">Sustainable Organic Practice since 1980</h3>
+            <p class="lead">Livewater Farm is a grass-based dairy operation producing 100% grass-fed raw cow’s milk, in addition to fresh grass-fed beef, pasture-raised chicken, milk-fed pork, free range eggs, garden vegetables, maple syrup, canned goods, and a wide variety of other sustainably produced farm products. In 2015, Livewater Dairy was established as a farmstead dairy processor located on Livewater Farm. Using only the freshest, 100% grass-fed milk produced on site by Livewater Farm, Livewater Dairy produces fresh cheese, aged raw milk cheese, and sweet cream butter.</p>
+            <p class="lead">
+              <a href="/livewater/barnyard/" class="btn btn-lg btn-secondary">Enter the Barnyard</a>
+            </p>
+		</div>
+
+			</div>
+
+		<div class="mastfoot">
+			<div class="inner">
+				<p style="color:#8ff441"> &copy; - Livewater Farm, Westminster West, Vermont</p>
+				<p style="color:#8ff441">Site designed by: <a href="http://egret.tv/">egret.tv</a></p>
+			</div>
+		</div>
+
+      </div>
+      <!-- </div> class .bg -->
+
+    </div>
+
+  </body>
+</html>

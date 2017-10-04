@@ -1,0 +1,8 @@
+.module {
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(http://egret.tv/images2/pasturecows.jpg);
+    background-size: cover;
+    width: 580px;
+    height: 300px;
+    margin: 0px 0 0 0px;
+    position: relative;
+}

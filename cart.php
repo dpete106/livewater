@@ -16,7 +16,7 @@ if (isset($_COOKIE['SESSION']) && (strlen($_COOKIE['SESSION']) === 32)) {
 setcookie('SESSION', $uid, time()+(60*60*24*30));
 
 // Include the header file:
-$page_title = 'Coffee - Your Shopping Cart';
+$page_title = 'Your Shopping Cart';
 include('./includes/header.html');
 
 // Require the database connection:
