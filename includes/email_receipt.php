@@ -91,9 +91,8 @@ $mail->setSubject("Order #{$_SESSION['order_id']} at the Coffee Site");
 $mail->setEncoding("UTF-8");
 $mail->setBody($body);
 $mail->getHeaders()->get('content-type')->setType('multipart/alternative');
-echo $body_html;
+//echo $body_html;
 //echo $body_plain; die();
-echo $body_plain; 
 
 // Send the email:
 

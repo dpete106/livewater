@@ -35,7 +35,7 @@ if (!$r) echo mysqli_error($dbc);
 include('./includes/email_receipt.php');
 
 // Include the header file:
-$page_title = 'Coffee - Checkout - Your Order is Complete';
+$page_title = 'Farm Stand - Checkout - Your Order is Complete';
 include('./includes/checkout_header.html');
 
 // Include the view:

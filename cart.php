@@ -45,13 +45,11 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 
 	
 	if ($cid > 0) {
-		echo "cid " . $cid . " uid " . $uid . " qty " . $qty;
 		$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
 		
 		$r = mysqli_query($dbc, $q);
 		
 	} else {
-		echo "cid " . $cid . " uid " . $uid . " qty " . $qty;
 
 		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
 		
@@ -60,7 +58,6 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 	}
 		
 } elseif (isset($type, $pid, $_GET['action']) && ($_GET['action'] === 'remove') ) { // Remove it from the cart.
-	echo "type " . $type . " uid " . $uid . " pid " . $pid;
 
 	$q = 'DELETE FROM carts WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
 	$r = mysqli_query($dbc, $q);
@@ -86,14 +83,12 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 
 	
 	if ($cid > 0) {
-		echo "cid " . $cid . " uid " . $uid . " qty " . $qty;
 		
 		$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
 		
 		$r = mysqli_query($dbc, $q);
 		
 	} else {
-		echo "cid " . $cid . " uid " . $uid . " qty " . $qty;
 
 		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
 		
