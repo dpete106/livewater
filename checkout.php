@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } // End of REQUEST_METHOD IF.
 							
 // Include the header file:
-$page_title = 'Cheese - Checkout - Your Shipping Information';
+$page_title = 'Checkout - Your Shipping Information';
 include('./includes/checkout_header.html');
 
 // Get the cart contents:
