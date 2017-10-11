@@ -3,12 +3,12 @@
 require('./includes/config.inc.php');
 
 // Validate the product type...
-if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
-	$page_title = 'Our Goodies, by Category';
-	$type = 'goodies';
-} else { // Default is cheese!
-	$page_title = 'Our Cheese Products';
-	$type = 'cheese';	
+if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
+	$page_title = 'Our Farm Fresh Products, by Category';
+	$type = 'farm';
+} else { // Default is dairy!
+	$page_title = 'Our Dairy Products';
+	$type = 'dairy';	
 }
 
 // Include the header file:
@@ -16,7 +16,7 @@ include('./includes/header.html');
 
 require('./mysql.inc.php');
 
-if ($type == 'cheese') {
+if ($type == 'dairy') {
 	$q = "(SELECT * FROM general_coffees ORDER by category)";
 } else {
 	$q = "(SELECT * FROM non_coffee_categories ORDER by category)";

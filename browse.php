@@ -11,13 +11,13 @@ if (isset($_GET['type'], $_GET['category'], $_GET['id']) && filter_var($_GET['id
 	$sp_cat = $_GET['id'];
 	
 	// Validate the type:
-	if ($_GET['type'] === 'goodies') {
+	if ($_GET['type'] === 'farm') {
 		
-		$type = 'goodies';
+		$type = 'farm Fresh';
 		
-	} elseif ($_GET['type'] === 'cheese') {
+	} elseif ($_GET['type'] === 'dairy') {
 		
-		$type = 'cheese';
+		$type = 'dairy';
 	}
 
 }
@@ -40,7 +40,7 @@ include('./includes/header.html');
 // Require the database connection:
 require('./mysql.inc.php');
 
-if ($type == 'cheese') {
+if ($type == 'dairy') {
 	$q = '(SELECT gc.description, gc.image, CONCAT("C", sc.id) AS sku, 
 CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
 sc.stock, sc.price, sales.price AS sale_price 
@@ -68,10 +68,10 @@ if (!$r) echo mysqli_error($dbc);
 
 // If records were returned, include the view file:
 if (mysqli_num_rows($r) > 0) {
-	if ($type === 'goodies') {
+	if ($type === 'farm Fresh') {
 		// Three versions of this file:
 		 include('./views/list_goodies.html');
-	} elseif ($type === 'cheese') {
+	} elseif ($type === 'dairy') {
 		 include('./views/list_coffees.html');
 
 		// Clear the stored procedure results:

@@ -1,0 +1,18 @@
+Options -MultiViews
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+# For the primary categories:
+RewriteRule ^shop/(dairy|farm)/?$ shop.php?type=$1
+RewriteRule ^browse/(dairy|farm)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?type=$1&category=$2&id=$3
+# For sales:
+# RewriteRule ^shop/sales/?$ /sales.php
+RewriteRule ^shop/sales/?$ sales.php
+# For HTTPS pages:
+# RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ http://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^cheese/checkout.php/?$ /livewater/checkout.php
+RewriteRule ^cheese/billing.php/?$ /livewater/billing.php
+RewriteRule ^cheese/final.php/?$ /livewater/final.php
+RewriteRule ^cheese/cart.php/?$ /cart.php
+</IfModule>
