@@ -29,10 +29,10 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 echo '</select></small></p> <input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
 
 echo '</div>';
-if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
 }
-if (isset($_GET['type']) && ($_GET['type'] === 'cheese')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
 	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
 }
 
