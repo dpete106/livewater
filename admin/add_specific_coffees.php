@@ -3,7 +3,7 @@
 require('../includes/config.inc.php');
 
 // Set the page title and include the header:
-$page_title = 'Add Specific Cheese';
+$page_title = 'Add Dairy Products';
 include('../admin/includes/header.html');
 // The header file begins the session.
 
@@ -67,13 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">
 
-<h3>Add Specific Cheese</h3>
+<h3>Add a Dairy Product</h3>
 
 <form action="add_specific_coffees.php" method="post" accept-charset="utf-8">
 
-	<fieldset><legend>Fill out the form to add specific cheese products to the site.</legend>
+	<fieldset><legend>Fill out the form to add dairy products to the site.</legend>
 		
-		<div class="field"><label for="category"><strong>General Cheese Type</strong></label><br />
+		<div class="field"><label for="category"><strong>General Dairy Type</strong></label><br />
 		<select name="category"><option>Select One</option>
 		<?php // Retrieve all the categories and add to the pull-down menu:
 		$q = 'SELECT id, category FROM general_coffees ORDER BY category ASC';		
@@ -133,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </form> 
 </div></div>
+<script type="text/javascript" src="/livewater/js/add_specific_coffees.js"></script>
 
 <?php // Include the HTML footer:
  include('../admin/includes/footer.html');

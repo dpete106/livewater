@@ -110,6 +110,7 @@ $(function() {
 	$(".calendar").datepicker({dateFormat: "yy-mm-dd", minDate:0});
 });
 </script>
+<script type="text/javascript" src="/livewater/js/create_sales.js"></script>
 
 <?php
 include('./includes/footer.html');

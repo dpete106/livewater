@@ -4,7 +4,7 @@
 require('../includes/config.inc.php');
 
 // Set the page title and include the header:
-$page_title = 'Add a Goodie';
+$page_title = 'Add Farm Fresh Products';
 include('../admin/includes/header.html');
 // The header file begins the session.
 
@@ -169,13 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require('../includes/form_functions.inc.php');
 ?>
 <div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">
-<h3>Add a Non-Cheese Product (a "Goodie")</h3>
+<h3>Add a Farm Fresh Product</h3>
 
 <form enctype="multipart/form-data" action="add_other_products.php" method="post" accept-charset="utf-8">
 
 	<input type="hidden" name="MAX_FILE_SIZE" value="524288" />
 	
-	<fieldset><legend>Fill out the form to add a non-cheese product to the catalog. All fields are required.</legend>
+	<fieldset><legend>Fill out the form to add a farm fresh product to the catalog. All fields are required.</legend>
 		
 	<div class="form-group"><label for="category"><strong>Category</strong></label><br /><select name="category"<?php if (array_key_exists('category', $add_product_errors)) echo ' class="error"'; ?>>
 		<option>Select One</option>
@@ -227,6 +227,7 @@ require('../includes/form_functions.inc.php');
 
 </form> 
 </div></div>
+<script type="text/javascript" src="/livewater/js/add_other_products.js"></script>
 
 <?php // Include the HTML footer:
  include('../admin/includes/footer.html');

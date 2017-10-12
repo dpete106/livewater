@@ -50,14 +50,15 @@ echo '</tbody></table>';
 echo '</div></div>';
 ?>
 
-<script src="/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript"> 
 // Enable Datatables:
-$(function() { 
-    $("#orders").dataTable();
-
-}); 
+//$(function() { 
+//    $("#orders").dataTable();
+//
+//}); 
 </script>
+<script type="text/javascript" src="/livewater/js/view_orders.js"></script>
 
 <?php
 // Include the footer file to complete the template.

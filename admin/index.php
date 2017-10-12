@@ -13,5 +13,6 @@ include('../admin/includes/header.html');
 <div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">
 <h3>Links</h3>
 </div></div>
+<script type="text/javascript" src="/livewater/js/admin.js"></script>
 
 <?php include('../admin/includes/footer.html'); ?>

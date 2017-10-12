@@ -111,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</fieldset>
 </form>
 </div></div>
+<script type="text/javascript" src="/livewater/js/add_inventory.js"></script>
 
 <?php
  include('../admin/includes/footer.html');
