@@ -20,8 +20,8 @@ if (mysqli_num_rows($r) > 0) {
 echo '<ul class="list-unstyled">';
 
    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-   	echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
-   	//echo '<li><p><a href="/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+   	//echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+   	echo '<li><p><a href="/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
    }
 	
 	echo '</ul>';
