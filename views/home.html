@@ -1,9 +1,10 @@
 <?php
 echo '<div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">';
-echo '<p>Welcome to the Farm Stand!<br>Please use the links at the top to browse through our catalog. </p>';
+echo '<p>Welcome to the Farm Stand at Livewater!<br>Please use the links at the top to browse through our catalog. </p>';
 echo '<div ><img class="img-responsive"  src="/livewater/images/farmstand.jpg" style="position: relative;width: 100%;height: auto;" /></div>';
+//echo '<div ><img class="img-responsive"  src="/images/farmstand.jpg" style="position: relative;width: 100%;height: auto;" /></div>';
 echo '<h2 style="color: #00ff00;position: absolute;top:350px;left: 0;width: 100%;"></h2>
-<p>If you\'ve been here before, you can find things you bookmarked by clicking on your Saved for Later and Cart links. </p>';
+<p>If you\'ve been here before, you can find things you bookmarked by clicking on your Wishlist and Cart links. </p>';
 echo '</div></div>';
 
 echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
@@ -14,12 +15,13 @@ echo '<div class="wrapper">';
 if (mysqli_num_rows($r) > 0) {
 	
 	echo '<dl class="special fright">
-		<dt><a href="/shopBoot/sales/">Sale Items</a></dt>';
+		<dt><a href="/shop/sales/">Sale Items</a></dt>';
 	echo '</dl>';
 echo '<ul class="list-unstyled">';
 
    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
    	echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+   	//echo '<li><p><a href="/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
    }
 	
 	echo '</ul>';
@@ -43,3 +45,4 @@ echo     '<div class="row marketing">
         </div>
       </div>';
 echo '<script type="text/javascript" src="/livewater/js/home.js"></script>';
+//echo '<script type="text/javascript" src="/js/home.js"></script>';
