@@ -1,6 +1,7 @@
 <div style="background-color:rgba(0,255,0,0.3);" class="jumbotron"> <!-- jumbotron -->
 <!--<div align="center"><img class="img-responsive" src="/images2/checkout_indicator2.png" /></div>-->
 <div align="center"><img class="img-responsive" src="/livewater/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div>
+<!-- <div align="center"><img class="img-responsive" src="/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div> -->
 <br clear="all" />
 
 <?php // Display the cart:
@@ -9,6 +10,7 @@ include('./views/checkout_cart.html');
 
 echo '<h2>Your Billing Information</h2><br>';
 
+//echo '<form action="/billing.php" method="POST" id="billing_form">';
 echo '<form action="/livewater/billing.php" method="POST" id="billing_form">';
 
 if (isset($bankerror)) {
@@ -51,4 +53,5 @@ echo '</div>'; ?>
 <script type="text/javascript">
 Stripe.setPublishableKey('pk_test_JRGK5txjD4IIgyJU5ztDwSz1');
 </script>
+<!-- <script type="text/javascript" src="/js/billing.js"></script> -->
 <script type="text/javascript" src="/livewater/js/billing.js"></script>

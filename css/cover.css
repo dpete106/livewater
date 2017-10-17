@@ -22,7 +22,8 @@ a:hover {
 
 /*
  * Base structure
- * background: url("/livewater/images/pasturecows.jpg") no-repeat center center fixed; 
+ * background: url("/livewater/images/pasturecows.jpg") no-repeat center center fixed;
+ * background-color: #333; 
  */
 
 html,
@@ -32,9 +33,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
   height: 100%;
-  background-color: #333;
 }
 body {
   color: #fff;

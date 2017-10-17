@@ -14,6 +14,7 @@ $uid = session_id();
 // Check that this is valid:
 if (!isset($_SESSION['customer_id'])) { // Redirect the user.
 	$location = '/livewater/' . BASE_URL . 'checkout.php';
+	//$location = '/' . BASE_URL . 'checkout.php';
 	header("Location: $location");
 	exit();
 }
@@ -221,6 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					
 					// Redirect to the next page:
 					//$location = 'https://' . BASE_URL . 'final.php';
+					//$location = '/' . BASE_URL . 'final.php';
 					$location = '/livewater/' . BASE_URL . 'final.php';
 					header("Location: $location");
 					exit();

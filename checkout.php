@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		// Start the session:
 		session_start();
 	} else { // Redirect the user.
+		//$location = '/' . BASE_URL . 'cart.php';
 		$location = '/livewater/' . BASE_URL . 'cart.php';
 		header("Location: $location");
 		exit();
@@ -143,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				
 				// Redirect to the next page:
 				//$location = 'https://' . BASE_URL . 'billing.php';
+				//$location = '/' . BASE_URL . 'billing.php';
 				$location = '/livewater/' . BASE_URL . 'billing.php';
 				header("Location: $location");
 				exit();

@@ -15,6 +15,7 @@ DEFINE('CONTACT_EMAIL', 'you@example.com');
 // ************ CONSTANTS *********** //
 
 // Determine location of files and the URL of the site:
+//define('BASE_URI', 'http://');
 define('BASE_URI', 'http://livewater/');
 define('BASE_URL', 'cheese/');
 define('MYSQL', 'http://livewater/mysql.inc.php');
