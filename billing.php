@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($billing_errors)) { // If everything's OK...
 
 		// Check for an existing order ID:
-		if (isset($_SESSION['order_id'])) { // Use existing order info:
+		if (isset($_SESSION['order_id']) && isset($_SESSION['order_total'])) { // Use existing order info:
 
 			$order_id = $_SESSION['order_id'];
 			$order_total = $_SESSION['order_total'];
