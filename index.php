@@ -84,8 +84,10 @@
 
 		<div class="mastfoot">
 			<div class="inner">
-				<p style="color:#8ff441"> &copy; - Livewater Farm, Westminster West, Vermont</p>
-				<p style="color:#8ff441">Site designed by: <a href="http://egret.tv/">egret.tv</a></p>
+				<ul style="list-style: none;color:#ffdead">
+				<li style="float:left;"> &copy; 2017 Livewater Farm, Westminster West, Vermont-</li>
+				<li style="float:left;">  Site designed by: <a href="http://egret.tv/">egret.tv</a></li>
+				</ul>
 			</div>
 		</div>
 
