@@ -30,7 +30,7 @@ $r = mysqli_query($dbc, $q);
 while ($row = mysqli_fetch_array ($r, MYSQLI_ASSOC)) {
 	echo '<tr>
     <td align="center">' . $row['cid'] . '</td>
-    <td align="center"><a href="view_customer.php?cid=' . $row['cid'] . '">' . htmlspecialchars( $row['name']) .'</a></td>
+    <td align="center"><a href="delete_customer.php?cid=' . $row['cid'] . '">' . htmlspecialchars( $row['name']) .'</a></td>
     <td align="center">' . $row['email'] .'</td>
     <td align="center">' . $row['DATE_CREATED'] .'</td>
   </tr>';
