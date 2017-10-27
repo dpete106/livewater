@@ -7,7 +7,7 @@ $page_title = 'Delete A Customer With No Order';
 include('../admin/includes/header.html');
 // The header file begins the session.
 
-// Validate the order ID:
+// Validate the customer ID:
 $customer_id = false;
 if (isset($_GET['cid']) && (filter_var($_GET['cid'], FILTER_VALIDATE_INT, array('min_range' => 1))) ) { // First access
 	$customer_id = $_GET['cid'];
@@ -22,11 +22,8 @@ if (!$customer_id) {
 	include('../admin/includes/footer.html');
 	exit();
 }
+
 require('../mysql.inc.php');
-
-
-// ------------------------
-// Process the payment!
 
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {	
@@ -45,13 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 		if (!$r) echo mysqli_error($dbc);
 	
-		$location = '/livewater/admin/view_customers.php';
-		header("Location: $location");
+		//$location = '/livewater/admin/view_customers.php';
+		//$location = '/admin/view_customers.php';
+		//header("Location: $location");
+		echo '<script> location.replace("/admin/view_customers.php"); </script>';
 		exit();
 	}				
 
 } // End of the submission IF.
-
 
 // Define the query:
 $q = 'SELECT c.id AS cid, CONCAT(last_name, ", ", first_name) AS name, email, CAST(date_created AS DATE) AS DATE_CREATED
