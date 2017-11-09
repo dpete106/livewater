@@ -61,8 +61,7 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 
 	$q = 'DELETE FROM carts WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
 	$r = mysqli_query($dbc, $q);
-
-
+	
 } elseif (isset($type, $pid, $_GET['action'], $_GET['qty']) && ($_GET['action'] === 'move') ) { // Move it to the cart.
 
 	// Determine the quantity:
