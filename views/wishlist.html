@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<td align="center"><input type="text" name="quantity[' . $row['sku'] . ']" value="' . $row['quantity'] . '" size="2" class="small" /></td>
 		<td align="right">$' . number_format($price, 2) . '</td>
 		<td align="right">$' . number_format($subtotal, 2) . '</td>
-		<td align="right"><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=move&qty=' . $row['quantity'] .'">+ Cart</a><br /><a href="/livewater/wishlist.php?sku=' . $row['sku'] . '&action=remove">X Remove</a></td>
+		<td align="right"><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=move&qty=' . $row['quantity'] .'">+Cart</a><br /><a href="/livewater/wishlist.php?sku=' . $row['sku'] . '&action=remove">XRemove</a></td>
 	</tr>
 	';
 	

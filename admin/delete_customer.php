@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		//$location = '/livewater/admin/view_customers.php';
 		//$location = '/admin/view_customers.php';
 		//header("Location: $location");
-		echo '<script> location.replace("/admin/view_customers.php"); </script>';
+		//echo '<script> location.replace("/admin/view_customers.php"); </script>';
+		echo '<script> location.replace("/livewater/admin/view_customers.php"); </script>';
 		exit();
 	}				
 
