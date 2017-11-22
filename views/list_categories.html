@@ -8,10 +8,26 @@ echo '<ul class="list-unstyled">';
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	
 	// Print the item within some HTML:
-	echo '<li><h4>' . $row['category'] . ' </h4>
+	if ($type == 'dairy') {
+		if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 3) {
+			echo '<li><h4>' . $row['category'] . ' </h4>
                 <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
                 <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
              </li>';	
+		}
+	} elseif ($type == 'maple') {
+		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
+			echo '<li><h4>' . $row['category'] . ' </h4>
+                <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
+                <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
+             </li>';	
+		}
+	} elseif ($type == 'farm') {
+		echo '<li><h4>' . $row['category'] . ' </h4>
+                <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
+                <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
+             </li>';	
+	}
 
 }
 

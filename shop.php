@@ -6,6 +6,10 @@ require('./includes/config.inc.php');
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	$page_title = 'Our Farm Fresh Products, by Category';
 	$type = 'farm';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'maple')) { 
+	$page_title = 'Our Maple Sryup Products';
+	$type = 'maple';	
+
 } else { // Default is dairy!
 	$page_title = 'Our Dairy Products';
 	$type = 'dairy';	
@@ -16,7 +20,7 @@ include('./includes/header.html');
 
 require('./mysql.inc.php');
 
-if ($type == 'dairy') {
+if ($type == 'dairy' or $type == 'maple') {
 	$q = "(SELECT * FROM general_coffees ORDER by category)";
 } else {
 	$q = "(SELECT * FROM non_coffee_categories ORDER by category)";

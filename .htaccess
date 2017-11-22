@@ -4,8 +4,8 @@ Options -MultiViews
 <IfModule mod_rewrite.c>
 RewriteEngine on
 # For the primary categories:
-RewriteRule ^shop/(dairy|farm)/?$ shop.php?type=$1
-RewriteRule ^browse/(dairy|farm)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?type=$1&category=$2&id=$3
+RewriteRule ^shop/(dairy|farm|maple)/?$ shop.php?type=$1
+RewriteRule ^browse/(dairy|farm|maple)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?type=$1&category=$2&id=$3
 # For sales:
 # RewriteRule ^shop/sales/?$ /sales.php
 RewriteRule ^shop/sales/?$ sales.php
