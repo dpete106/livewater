@@ -11,7 +11,7 @@ $(function() {
 	$('.nav-item a#sales').removeClass('active');
 	$('.nav-item a#saved').removeClass('active');
 	$('.nav-item a#cart').removeClass('active');
-	$('.nav-item a#cheese').addClass('active');
+	$('.nav-item a#maple').addClass('active');
 
 	
 }); // document ready.

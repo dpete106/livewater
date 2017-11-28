@@ -18,6 +18,9 @@ if (isset($_GET['type'], $_GET['category'], $_GET['id']) && filter_var($_GET['id
 	} elseif ($_GET['type'] === 'dairy') {
 		
 		$type = 'dairy';
+	} elseif ($_GET['type'] === 'maple') {
+		
+		$type = 'maple';
 	}
 
 }
@@ -40,7 +43,7 @@ include('./includes/header.html');
 // Require the database connection:
 require('./mysql.inc.php');
 
-if ($type == 'dairy') {
+if ($type == 'dairy' || $type == 'maple') {
 	$q = '(SELECT gc.description, gc.image, CONCAT("C", sc.id) AS sku, 
 CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
 sc.stock, sc.price, sales.price AS sale_price 
@@ -72,6 +75,17 @@ if (mysqli_num_rows($r) > 0) {
 		// Three versions of this file:
 		 include('./views/list_goodies.html');
 	} elseif ($type === 'dairy') {
+		 include('./views/list_coffees.html');
+
+		// Clear the stored procedure results:
+		mysqli_free_result($r);
+
+		//include('./includes/handle_review.php');
+		
+		//$r = mysqli_query($dbc, "CALL select_reviews('$type', $sp_cat)");
+		//include('./views/review.html');
+
+	} elseif ($type === 'maple') {
 		 include('./views/list_coffees.html');
 
 		// Clear the stored procedure results:

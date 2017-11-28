@@ -1,6 +1,12 @@
-<div class="jumbotron">
-<?php echo BOX_BEGIN; ?>
+<div style="background-color:rgba(192,192,192);" class="jumbotron">
   <h2>Error!</h2>
   <p>Unfortunately a system error has occurred. Please use the links at the top of the page to continue shopping. We apologize for the inconvenience.</p>
-<?php echo BOX_END; ?>
 </div>
+<?php 
+if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
+	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
+}
+if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
+	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
+}
+?>
