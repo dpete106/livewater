@@ -3,7 +3,7 @@
 require('../includes/config.inc.php');
 
 // Set the page title and include the header:
-$page_title = 'Add Dairy Products';
+$page_title = 'Add Maple Products';
 include('../admin/includes/header.html');
 // The header file begins the session.
 
@@ -67,19 +67,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">
 
-<h3>Add a Dairy Product</h3>
+<h3>Add a Maple Product</h3>
 
 <form action="add_specific_coffees.php" method="post" accept-charset="utf-8">
 
-	<fieldset><legend>Fill out the form to add dairy products to the site.</legend>
+	<fieldset><legend>Fill out the form to add maple products to the site.</legend>
 		
-		<div class="field"><label for="category"><strong>General Dairy Type</strong></label><br />
+		<div class="field"><label for="category"><strong>General Maple Type</strong></label><br />
 		<select name="category"><option>Select One</option>
 		<?php // Retrieve all the categories and add to the pull-down menu:
 		$q = 'SELECT id, category FROM general_coffees ORDER BY category ASC';		
 		$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array ($r, MYSQLI_NUM)) {
-				if ($row[0] == 1 || $row[0] == 2 || $row[0] == 3) {
+				if ($row[0] == 4 || $row[0] == 5 || $row[0] == 6) {
 					echo '<option value="' . $row[0] . '">' . htmlspecialchars($row[1]) . '</option>';
 				}
 			}
@@ -90,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<thead>
 				<tr>
 			    <th align="right">Size</th>
-			    <th align="right">Ground/Whole</th>
-			    <th align="right">Caf./Decaf.</th>
+			    <th align="right">Container</th>
+			    <th align="right">Glass/Plastic.</th>
 			    <th align="center">Price</th>
 			    <th align="center">Quantity in Stock</th>
 			  </tr>
@@ -108,10 +108,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 		
 		// Need the available grind options:	
-		$grinds = '<option value="ground">Ground</option><option value="whole">Whole</option>';
+		$grinds = '<option value="container">Container</option>';
 
 		// Need the caffeinated/decaffeinated options:
-		$caf_decaf = '<option value="caf">Caffeinated</option><option value="decaf">Decaffeinated</option>';
+		$caf_decaf = '<option value="glass">Glass</option><option value="plastic">Plastic</option>';
 		
 		// Create a set of inputs for $count number of products:
 		for ($i = 1; $i <= $count; $i++) {
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </form> 
 </div></div>
-<script type="text/javascript" src="/livewater/js/add_specific_coffees.js"></script>
+<script type="text/javascript" src="/livewater/js/add_specific_maple.js"></script>
 
 <?php // Include the HTML footer:
  include('../admin/includes/footer.html');
