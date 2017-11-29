@@ -14,6 +14,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<div class="col-md-4">
 			<img alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div>
 			<p><small>All listed products are currently available.</small></p>';
+//			<img alt="' . $category . '" src="/products/' . $row['image'] . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div>
 
 		echo '<form action="/livewater/cart.php" method="get">
 			<input type="hidden" name="action" value="add" /><p><small><select style="width: 95%"; name="sku">';
@@ -31,6 +32,7 @@ echo '</select></small></p> <input type="submit" value="Add to Cart" class="btn 
 echo '</div>';
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
+//	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
 }
 if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
 	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';

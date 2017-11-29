@@ -14,6 +14,8 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
                 <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
                 <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
              </li>';	
+//                <p><img alt="' . $row['category'] . '" src="/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
+//                <a href="/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
 		}
 	} elseif ($type == 'maple') {
 		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
@@ -36,6 +38,7 @@ echo '</ul>';
 echo '</div>';
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
+//	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
 }
 if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
 	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';

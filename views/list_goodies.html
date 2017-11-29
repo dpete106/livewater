@@ -29,6 +29,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<img alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div><p>' . get_price($type, $row['price'], $row['sale_price']) . 
 		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
 		<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';
+//		<img alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div><p>' . get_price($type, $row['price'], $row['sale_price']) . 
   	
 } // End of WHILE loop. 
 
@@ -37,6 +38,7 @@ echo '<p> <br clear="all" /></p>';
 echo '</div>';
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
+//	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
 }
 if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
 	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
