@@ -12,7 +12,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		echo '<h2>' . $category . '</h2>
 				<div class="row">
 				<div class="col-md-4">
-		             	<img alt="' . $category . '" src="/livewater/products/' . $row['g_image'] . '" /></div><div class="col-md-8"><p>'. $row['g_description'] . '</p></div>
+		             	<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['g_image'] . '" /></div><div class="col-md-8"><p>'. $row['g_description'] . '</p></div>
 		          </div>';
 
 
@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	echo '<h3>' . $row['name'] . '</h3>
 			<div class="row">
 			<div class="col-md-4">
-		<img alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div><p>' . get_price($type, $row['price'], $row['sale_price']) . 
+		<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div><p>' . get_price($type, $row['price'], $row['sale_price']) . 
 		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
 		<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';
 //		<img alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div><p>' . get_price($type, $row['price'], $row['sale_price']) . 

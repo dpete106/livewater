@@ -10,24 +10,24 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	// Print the item within some HTML:
 	if ($type == 'dairy') {
 		if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 3) {
-			echo '<li><h4>' . $row['category'] . ' </h4>
-                <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
-                <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
              </li>';	
 //                <p><img alt="' . $row['category'] . '" src="/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
 //                <a href="/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
 		}
 	} elseif ($type == 'maple') {
 		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
-			echo '<li><h4>' . $row['category'] . ' </h4>
-                <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
-                <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
-             </li>';	
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
 		}
 	} elseif ($type == 'farm') {
-		echo '<li><h4>' . $row['category'] . ' </h4>
-                <p><img alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
-                <a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
+		echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
              </li>';	
 	}
 
