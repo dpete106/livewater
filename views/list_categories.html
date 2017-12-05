@@ -1,41 +1,45 @@
 <?php 
-
-echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
-
-
-echo '<ul class="list-unstyled">';
-
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
+
+
 	
 	// Print the item within some HTML:
 	if ($type == 'dairy') {
 		if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 3) {
+			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
              </li>';	
 //                <p><img alt="' . $row['category'] . '" src="/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
 //                <a href="/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
+			echo '</ul>';
+			echo '</div>';
 		}
 	} elseif ($type == 'maple') {
 		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
+			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
                  <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
             </li>';	
+			echo '</ul>';
+			echo '</div>';
 		}
 	} elseif ($type == 'farm') {
-		echo '<li><h5>' . $row['category'] . ' </h5>
+			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
              </li>';	
+			echo '</ul>';
+			echo '</div>';
 	}
-
 }
 
-echo '</ul>';
-
-echo '</div>';
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
 //	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
