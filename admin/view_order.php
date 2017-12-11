@@ -88,6 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$r = mysqli_query($dbc, $q);
 					if (!$r) echo mysqli_error($dbc);
 					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="maple" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
 					$q = 'UPDATE non_coffee_products AS ncp, order_contents AS oc SET ncp.stock=ncp.stock-oc.quantity WHERE ncp.id=oc.product_id AND oc.product_type="goodies" AND oc.order_id=' . $order_id;
 					$r = mysqli_query($dbc, $q);
 					if (!$r) echo mysqli_error($dbc);
