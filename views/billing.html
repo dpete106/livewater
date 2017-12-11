@@ -14,9 +14,13 @@ echo '<h2>Your Billing Information</h2><br>';
 echo '<form action="/livewater/billing.php" method="POST" id="billing_form">';
 
 if (isset($bankerror)) {
-	echo "<p class=\"alert alert-warning\">$bankerror</p>";
+	echo "<p class=\"alert alert-danger\">$bankerror</p>";
 } else {
-	echo '<span class="alert alert-warning" id="error_span"></span>';
+	if (empty($billing_errors)) { 
+
+	} else {
+		echo '<p class="alert alert-danger" id="error_span">Input Field Error below—check it out!</p>';
+	}
 }
 
 include('./includes/form_functions.inc.php');

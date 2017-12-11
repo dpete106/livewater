@@ -7,6 +7,13 @@
 <?php // Display the cart:
 include('./views/checkout_cart.html');
 
+if (empty($shipping_errors)) { 
+
+} else {
+echo '<div class="alert alert-danger" role="alert">
+  Input Field Error below—check it out! 
+</div>';
+}
 ?> 
 <h2>Your Shipping Information</h2>
 <!--<form action="/checkout.php" method="POST"> -->

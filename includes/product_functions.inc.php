@@ -61,6 +61,8 @@ function parse_sku($sku) {
 		$type = 'coffee';
 	} elseif ($type_abbr === 'G') {
 		$type = 'goodies';
+	} elseif ($type_abbr === 'M') {
+		$type = 'maple';
 	} else {
 		$type = NULL;
 	}

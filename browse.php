@@ -43,8 +43,20 @@ include('./includes/header.html');
 // Require the database connection:
 require('./mysql.inc.php');
 
-if ($type == 'dairy' || $type == 'maple') {
+if ($type == 'dairy') {
 	$q = '(SELECT gc.description, gc.image, CONCAT("C", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="coffee" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+} elseif ($type == 'maple') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("M", sc.id) AS sku, 
 CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
 sc.stock, sc.price, sales.price AS sale_price 
 FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
