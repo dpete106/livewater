@@ -119,44 +119,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	if (empty($shipping_errors)) { // If everything's OK...
-		
-		// Add the user to the database...
-		$q1 = 'INSERT INTO customers (email, first_name, last_name, address1, address2, city, state, zip, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-		$affected = 0;
-		$stmt1 = mysqli_prepare($dbc, $q1);
-		mysqli_stmt_bind_param($stmt1, 'sssssssss', $e, $fn, $ln, $a1, $a2, $c, $s, $z, $p);
-		mysqli_stmt_execute($stmt1);
-		$affected += mysqli_stmt_affected_rows($stmt1);	
-		if (!$affected > 0) echo mysqli_error($dbc);
+		// check if duplicate customer
 
-		// Confirm that it worked:
-		if ($affected > 0) {
-			// Retrieve the customer ID:
-			$q = 'SELECT id FROM customers ORDER BY id DESC LIMIT 0, 1';
+		$q = "(SELECT * FROM customers WHERE (email = '" . $e . "') AND (last_name = '" . $ln . "') AND (address1 = '" . $a1 . "') ORDER by email)";
+		$r = mysqli_query($dbc, $q);
 
-			//$r = mysqli_query($dbc, 'SELECT @cid');
-			$r = mysqli_query($dbc, $q);
+		if (!$r) echo mysqli_error($dbc);
+
+		if (mysqli_num_rows($r) > 0) {
+			while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
+				list($_SESSION['customer_id']) = $row['id'];
+			}
+			
+			$location = '/livewater/' . BASE_URL . 'billing.php';
+			header("Location: $location");
+			exit();
+		} else { 
+			// Add the user to the database...
+			$q1 = 'INSERT INTO customers (email, first_name, last_name, address1, address2, city, state, zip, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$affected = 0;
+			$stmt1 = mysqli_prepare($dbc, $q1);
+			mysqli_stmt_bind_param($stmt1, 'sssssssss', $e, $fn, $ln, $a1, $a2, $c, $s, $z, $p);
+			mysqli_stmt_execute($stmt1);
+			$affected += mysqli_stmt_affected_rows($stmt1);	
+			if (!$affected > 0) echo mysqli_error($dbc);
+
+			// Confirm that it worked:
+			if ($affected > 0) {
+				// Retrieve the customer ID:
+				$q = 'SELECT id FROM customers ORDER BY id DESC LIMIT 0, 1';
+
+				//$r = mysqli_query($dbc, 'SELECT @cid');
+				$r = mysqli_query($dbc, $q);
 
 			
-			if (mysqli_num_rows($r) == 1) {
+				if (mysqli_num_rows($r) == 1) {
 
-				list($_SESSION['customer_id']) = mysqli_fetch_array($r);
+					list($_SESSION['customer_id']) = mysqli_fetch_array($r);
 				
-				// Redirect to the next page:
-				//$location = 'https://' . BASE_URL . 'billing.php';
-				//$location = '/' . BASE_URL . 'billing.php';
-				$location = '/livewater/' . BASE_URL . 'billing.php';
-				header("Location: $location");
-				exit();
-
+					$location = '/livewater/' . BASE_URL . 'billing.php';
+					header("Location: $location");
+					exit();
+				}
 			}
-
-		}
-
-		// Log the error, send an email, panic!
-
-		trigger_error('Your order could not be processed due to a system error. We apologize for the inconvenience.');
-
+			// Log the error, send an email, panic!
+			trigger_error('Your order could not be processed due to a system error. We apologize for the inconvenience.');
+		} // IF customer not on DB
 	} // Errors occurred IF.
 
 } // End of REQUEST_METHOD IF.
