@@ -121,15 +121,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($shipping_errors)) { // If everything's OK...
 		// check if duplicate customer
 
-		$q = "(SELECT * FROM customers WHERE (email = '" . $e . "') AND (last_name = '" . $ln . "') AND (address1 = '" . $a1 . "') ORDER by email)";
+		$q = "(SELECT id FROM customers WHERE (email = '" . $e . "') AND (last_name = '" . $ln . "') AND (address1 = '" . $a1 . "') ORDER by id DESC LIMIT 1)";
 		$r = mysqli_query($dbc, $q);
 
 		if (!$r) echo mysqli_error($dbc);
 
-		if (mysqli_num_rows($r) > 0) {
-			while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
-				list($_SESSION['customer_id']) = $row['id'];
-			}
+		if (mysqli_num_rows($r) == 1) {
+
+			list($_SESSION['customer_id']) = mysqli_fetch_array($r);
 			
 			$location = '/livewater/' . BASE_URL . 'billing.php';
 			header("Location: $location");
@@ -156,7 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				if (mysqli_num_rows($r) == 1) {
 
 					list($_SESSION['customer_id']) = mysqli_fetch_array($r);
-				
+					//exit($_SESSION['customer_id']);
+
 					$location = '/livewater/' . BASE_URL . 'billing.php';
 					header("Location: $location");
 					exit();
