@@ -5,7 +5,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	
 	// Print the item within some HTML:
 	if ($type == 'dairy') {
-		if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 3) {
+		if ($row['id'] == 1 or $row['id'] == 0 or $row['id'] == 0) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
@@ -29,6 +29,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 			echo '</div>';
 		}
 	} elseif ($type == 'farm') {
+		if ($row['id'] == 5) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
@@ -37,6 +38,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
              </li>';	
 			echo '</ul>';
 			echo '</div>';
+		}
 	}
 }
 

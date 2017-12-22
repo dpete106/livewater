@@ -7,7 +7,7 @@ if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	$page_title = 'Our Farm Fresh Products, by Category';
 	$type = 'farm';
 } elseif (isset($_GET['type']) && ($_GET['type'] === 'maple')) { 
-	$page_title = 'Our Maple Sryup Products';
+	$page_title = 'Our Maple Syrup Products';
 	$type = 'maple';	
 
 } else { // Default is dairy!
