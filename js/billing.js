@@ -3,6 +3,7 @@
 $(function() {
 
   $('#billing_form').submit(function() {
+	  
 		var error = false;
 		$('input[type=submit]', this).attr('disabled', 'disabled');
 
@@ -18,6 +19,7 @@ $(function() {
 			error = true;
 			reportError('The expiration date appears to be invalid.');
 		}
+
 		if (!error) {
 			Stripe.createToken({
 				number: cc_number,
@@ -26,7 +28,6 @@ $(function() {
 				exp_year: cc_exp_year
 			}, stripeResponseHandler);
 		}
-
 		return false;
 
 	}); // form submission
@@ -37,8 +38,11 @@ $(function() {
 function stripeResponseHandler(status, response) {
 
 	if (response.error) {
+
 		reportError(response.error.message);
 	} else { // No errors, submit the form.
+	
+	
 	  var billing_form = $('#billing_form');
 	  var token = response.id;
 	  billing_form.append("<input type='hidden' name='token' value='" + token + "' />");
@@ -49,6 +53,7 @@ function stripeResponseHandler(status, response) {
 } // End of stripeResponseHandler() function.
 
 function reportError(msg) {
+
 	$('#error_span').text(msg);
     $('input[type=submit]').prop('disabled', false);
 	return false;

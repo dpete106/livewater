@@ -17,7 +17,7 @@ if (isset($bankerror)) {
 	echo "<p class=\"alert alert-danger\">$bankerror</p>";
 } else {
 	if (empty($billing_errors)) { 
-
+		echo '<span class="alert alert-warning" id="error_span"></span>';
 	} else {
 		echo '<p class="alert alert-danger" id="error_span">Input Field Error below—check it out!</p>';
 	}
@@ -27,9 +27,9 @@ include('./includes/form_functions.inc.php');
 ?>
 <fieldset>
 
-	<div class="field"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" id="cc_number" autocomplete="off" value="6011111111111117" /></div>
+	<div class="field"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" id="cc_number" autocomplete="off" value="4242424242424242" /></div>
 
-	<div class="field"><label for="exp_date"><strong>Expiration Date (MM/YYYY)</strong></label><br /><input type="text" id="cc_exp_month" autocomplete="off" value="12" />/<input type="text" id="cc_exp_year" autocomplete="off" value="2017"/></div>
+	<div class="field"><label for="exp_date"><strong>Expiration Date (MM/YYYY)</strong></label><br /><input type="text" id="cc_exp_month" autocomplete="off" value="12" />/<input type="text" id="cc_exp_year" autocomplete="off" value="2018"/></div>
 
 	<div class="field"><label for="cc_cvv"><strong>CVV</strong></label><br /><input type="text" id="cc_cvv" autocomplete="off" value="123" /></div>
 

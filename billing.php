@@ -28,8 +28,6 @@ require('./mysql.inc.php');
 // For storing errors:
 $billing_errors = array();
 
-
-
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
