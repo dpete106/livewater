@@ -32,9 +32,13 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 } // End of WHILE loop. 
 
 echo '</table></div><p align="center"><input type="submit" value="Update Quantities" class="btn btn-info" /></form></p>';
-
+// $cart_contents from wishlist.php
+if ($cart_contents == 1) { // cart contains items
+	echo '<script type="text/javascript" src="/livewater/js/saved.js"></script>';
+} else { // cart empty and remove item from local storage
+	echo '<script type="text/javascript" src="/livewater/js/saved_cartnull.js"></script>';
+}
 ?>
-<script type="text/javascript" src="/livewater/js/saved.js"></script>
 </div>
 <div style="background-color:rgba(192,192,192);" class="jumbotron">
 <p>Please use this form to update your Wishlist of saved items. You may change the quantities, move items to your cart for purchasing, or remove items entirely.</p>
