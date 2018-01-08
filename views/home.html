@@ -33,7 +33,7 @@ echo '<div id="carouselExampleIndicators" class="carousel slide" data-ride="caro
 echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 echo '<p>Welcome to the Farm Stand at Livewater!<br>Please use the links at the top to browse through our catalog. </p>';
 //echo '<img class="img-responsive";  src="/livewater/images/farmstand.jpg";  style="position: relative;width: 50%;height: 50%;"  />
-echo '<p>If you\'ve been here before, you can find things you bookmarked by clicking on your Wishlist and Cart links. </p>';
+echo '<p>If you\'ve been here before, you can find things you saved by clicking on your Wishlist and Cart links. </p>';
 echo '</div>';
 
 //echo '<img class="img-responsive";  src="/images/farmstand.jpg";  style="position: relative;width: 50%;height: 50%;"  />
@@ -46,7 +46,7 @@ echo '<div class="wrapper">';
 if (mysqli_num_rows($r) > 0) {
 	
 	echo '<dl class="special fright">
-		<dt><a href="/shop/sales/">Sale Items</a></dt>';
+		<dt><a href="/livewater/shop/sales/">Sale Items</a></dt>';
 	echo '</dl>';
 echo '<ul class="list-unstyled">';
 
