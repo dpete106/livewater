@@ -1,13 +1,22 @@
 <?php
 function get_stock_status($stock) {
 	
-	if ($stock > 5) { // Plenty!
+	//if ($stock > 5) { // Plenty!
+	//	return 'In Stock';
+	//} elseif ($stock > 0) { // Low!
+	//	return 'Low Stock';
+	//} else { // Out!
+	//	return 'Currently Out of Stock';
+	//}
+	
+	if ($stock > 1) { // Plenty!
 		return 'In Stock';
 	} elseif ($stock > 0) { // Low!
-		return 'Low Stock';
+		return '1 item';
 	} else { // Out!
 		return 'Currently Out of Stock';
 	}
+	
 	
 } // End of get_stock_status() function.
 
