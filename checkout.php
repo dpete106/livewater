@@ -108,7 +108,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	
 	// Check if the shipping address is the billing address:
-	if (isset($_POST['use']) && ($_POST['use'] === 'Y')) {
+	//if (isset($_POST['use']) && ($_POST['use'] === 'Y')) {
+	//	$_SESSION['shipping_for_billing'] = true;
+	//	$_SESSION['cc_first_name']  = $_POST['first_name'];
+	//	$_SESSION['cc_last_name']  = $_POST['last_name'];
+	//	$_SESSION['cc_address']  = $_POST['address1'] . ' ' . $_POST['address2'];
+	//	$_SESSION['cc_city'] = $_POST['city'];
+	//	$_SESSION['cc_state'] = $_POST['state'];
+	//	$_SESSION['cc_zip'] = $_POST['zip'];
+	//}
+
+	if (empty($shipping_errors)) { // If everything's OK...
 		$_SESSION['shipping_for_billing'] = true;
 		$_SESSION['cc_first_name']  = $_POST['first_name'];
 		$_SESSION['cc_last_name']  = $_POST['last_name'];
@@ -116,9 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['cc_city'] = $_POST['city'];
 		$_SESSION['cc_state'] = $_POST['state'];
 		$_SESSION['cc_zip'] = $_POST['zip'];
-	}
-
-	if (empty($shipping_errors)) { // If everything's OK...
+		
 		// check if duplicate customer
 
 		$q = "(SELECT id FROM customers WHERE (email = '" . $e . "') AND (last_name = '" . $ln . "') AND (address1 = '" . $a1 . "') ORDER by id DESC LIMIT 1)";

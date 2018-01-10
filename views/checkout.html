@@ -22,7 +22,7 @@ echo '<div class="alert alert-danger" role="alert">
 include('./includes/form_functions.inc.php');
 ?>
 	<fieldset>
-		<div class="field"><label for="use"><strong>Use Same Address for Billing?</strong></label><br /><input type="checkbox" name="use" value="Y" id="use" <?php if (isset($_POST['use'])) echo 'checked="checked" ';?>/></div>
+	<!--<div class="field"><label for="use"><strong>Use Same Address for Billing?</strong></label><br /><input type="checkbox" name="use" value="" id="use" <?php if (isset($_POST['use'])) echo 'checked="checked" ';?>/></div>-->
 
 	<div class="field"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php create_form_input('first_name', 'text', $shipping_errors); ?></div>
 	
