@@ -59,3 +59,7 @@ function reportError(msg) {
 	return false;
 }
 
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
