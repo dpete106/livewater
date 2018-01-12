@@ -14,8 +14,12 @@ echo '<div class="alert alert-danger" role="alert">
   Input Field Error below—check it out! 
 </div>';
 }
-?> 
-<h2>Your Shipping Information</h2>
+echo '<h2>Your Shipping Information</h2>';
+echo '<p><div class="popup" onclick="checkFunction()"><img src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
+  <span class="popuptext" id="checkPopup">Please enter your shipping information. On the next page,  you\'ll be able to enter your billing information and complete the order. Please check the first box if your shipping and billing addresses are the same. <span class="required">*</span> Indicates a required field. </span>
+</div></p>';
+
+?>
 <!--<form action="/checkout.php" method="POST"> -->
 <form action="/livewater/checkout.php" method="POST">
 <?php // Need the form function:
@@ -46,8 +50,8 @@ include('./includes/form_functions.inc.php');
 	
 <div align="center"><input type="submit" value="Continue onto Billing" class="btn btn-info" /></div></fieldset></form>
 </div> <!-- jumbotron -->
-<?php echo '<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron">'; 
-echo '<p>Please enter your shipping information. On the next page,  you\'ll be able to enter your billing information and complete the order. Please check the first box if your shipping and billing addresses are the same. <span class="required">*</span> Indicates a required field. </p>';
-echo '</div>'; ?> 
-
+<?php //echo '<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron">'; 
+//echo '<p>Please enter your shipping information. On the next page,  you\'ll be able to enter your billing information and complete the order. Please check the first box if your shipping and billing addresses are the same. <span class="required">*</span> Indicates a required field. </p>';
+//echo '</div>'; ?> 
+<script type="text/javascript" src="/livewater/js/checkout.js"></script>
 

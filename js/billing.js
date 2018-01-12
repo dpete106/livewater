@@ -59,7 +59,11 @@ function reportError(msg) {
 	return false;
 }
 
-function myFunction() {
-    var popup = document.getElementById("myPopup");
+function billFunction() {
+    var popup = document.getElementById("billPopup");
+    popup.classList.toggle("show");
+}
+function shipFunction() {
+    var popup = document.getElementById("shipPopup");
     popup.classList.toggle("show");
 }
