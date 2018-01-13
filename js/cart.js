@@ -23,3 +23,7 @@ $(function() {
 	
 }); // document ready.
 
+function cartFunction() {
+    var popup = document.getElementById("cartPopup");
+    popup.classList.toggle("show");
+}

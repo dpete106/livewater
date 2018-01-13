@@ -17,12 +17,12 @@ echo '<p><div class="popup" onclick="billFunction()"><img src="/livewater/images
 echo '<form action="/livewater/billing.php" method="POST" id="billing_form">';
 
 if (isset($bankerror)) {
-	echo "<p class=\"alert alert-danger\">$bankerror</p>";
+	echo "<div class=\"alert alert-danger\">$bankerror</div>";
 } else {
 	if (empty($billing_errors)) { 
-		echo '<p><span class="alert alert-warning" id="error_span">If Place Order does not work look here for message.</span></p>';
+		echo '<div class="alert alert-warning" id="error_span">If Place Order does not work look here for message.</div>';
 	} else {
-		echo '<p class="alert alert-danger" id="error_span">Input Field Error below—check it out!</p>';
+		echo '<div class="alert alert-danger" id="error_span">Input Field Error below—check it out!</div>';
 	}
 }
 echo '<p>We are still in TEST mode. 4242424242424242 is a valid VISA number.  Try 4000000000000002 for card decline error.</p>';
