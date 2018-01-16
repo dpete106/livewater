@@ -11,6 +11,7 @@ RewriteRule ^browse/(dairy|farm|maple)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?ty
 RewriteRule ^shop/sales/?$ sales.php
 # For HTTPS pages:
 # RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ http://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^cheese/index.php/?$ /index.php
 RewriteRule ^cheese/checkout.php/?$ /livewater/checkout.php
 RewriteRule ^cheese/billing.php/?$ /livewater/billing.php
 RewriteRule ^cheese/final.php/?$ /livewater/final.php
