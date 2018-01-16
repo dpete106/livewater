@@ -16,3 +16,9 @@ $(function() {
 	
 }); // document ready.
 
+function homeFunction() {
+    var popup = document.getElementById("homePopup");
+    popup.classList.toggle("show");
+}
+
+
