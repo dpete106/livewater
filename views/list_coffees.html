@@ -14,8 +14,8 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<div class="col-md-4">
 			<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div>
 			<p><strong>All listed products are currently available.</strong></p>';
-//			<img alt="' . $category . '" src="/products/' . $row['image'] . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div>
 
+		//echo '<form action="/cart.php" method="get">
 		echo '<form action="/livewater/cart.php" method="get">
 			<input type="hidden" name="action" value="add" /><p><small><select style="width: 95%"; name="sku">';
 

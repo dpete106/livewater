@@ -6,6 +6,7 @@ require('./includes/config.inc.php');
 
 if (!isset($_GET['x'], $_GET['y']) || !filter_var($_GET['x'], FILTER_VALIDATE_INT,  array('min_range' => 1)) || (strlen($_GET['y']) !== 40) ) { // Redirect the user.
 	//$location = 'https://' . BASE_URL . 'index.php';
+	//$location = '/stand/' . BASE_URL . 'index.php';
 	$location = '/livewater/stand/' . BASE_URL . 'index.php';
 
 	header("Location: $location");

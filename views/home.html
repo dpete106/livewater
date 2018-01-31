@@ -32,8 +32,7 @@ echo '<div id="carouselExampleIndicators" class="carousel slide" data-ride="caro
 </div>';
 echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 echo '<p>Welcome to the Farm Stand at Livewater!<br>Please use the links at the top to browse through our catalog. </p>';
-//echo '<img class="img-responsive";  src="/livewater/images/farmstand.jpg";  style="position: relative;width: 50%;height: 50%;"  />
-//echo '<p>If you\'ve been here before, you can find things you saved by clicking on your Wishlist and Cart links. </p>';
+//echo '<p><div class="popup" onclick="homeFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<p><div class="popup" onclick="homeFunction()"><img src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="homePopup">If you\'ve been here before, you can find things you saved by clicking on your Wishlist and Cart links. </span>
 </div></p>';
@@ -54,7 +53,7 @@ if (mysqli_num_rows($r) > 0) {
 echo '<ul class="list-unstyled">';
 
    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-   	//echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+   	//echo '<li><p><a href="/shop/sales/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
    	echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
    }
 	

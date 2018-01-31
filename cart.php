@@ -161,6 +161,12 @@ if (!$r) echo mysqli_error($dbc);
 if (mysqli_num_rows($r) > 0) { // Products to show!
 	include('./views/cart.html');
 } else { // Empty cart!
+		if (isset($_SESSION['order_id']) ) { 
+		// Clear the session:
+			$_SESSION = array(); // Destroy the variables.
+			session_destroy(); // Destroy the session itself.
+		} else {}
+	
 	include('./views/emptycart.html');
 }
 

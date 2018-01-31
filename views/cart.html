@@ -2,6 +2,7 @@
 
 echo '<h2>Your Shopping Cart</h2>';
 ?>
+<!--<form action="/cart.php" method="POST"> -->
 <form action="/livewater/cart.php" method="POST">
 <div class="table-responsive">
 <table class="table">
@@ -55,6 +56,7 @@ echo '<tr>
 ';
 
 echo '</table></div>';
+//echo '<p><div class="popup" onclick="cartFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<p><div class="popup" onclick="cartFunction()"><img src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="cartPopup">Please use this form to update your shopping cart. You may change the quantities, move items to your wish list for future purchasing, or remove items entirely. The shipping and handling cost is based upon the order total. When you are ready to complete your purchase, please click Checkout to be taken to a secure page for processing.</span>
 </div></p>';
@@ -62,9 +64,7 @@ echo '<p align="center"><input type="submit" value="Update Quantities" class="bt
 
 echo '</div>'; //jumbotron
 
-//echo '<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron">'; 
-//echo '<p>Please use this form to update your shopping cart. You may change the quantities, move items to your wish list for future purchasing, or remove items entirely. The shipping and handling cost is based upon the order total. When you are ready to complete your purchase, please click Checkout to be taken to a secure page for processing.</p>';
-//echo '</div>';
+//echo '<script type="text/javascript" src="/js/cart.js"></script>';
 echo '<script type="text/javascript" src="/livewater/js/cart.js"></script>';
 
 ?>

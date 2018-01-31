@@ -1,5 +1,6 @@
 <div style="background-color:rgba(192,192,192);" class="jumbotron">
 <h2>Wishlist</h2>
+<!--<form action="/wishlist.php" method="POST"> -->
 <form action="/livewater/wishlist.php" method="POST">
 <div class="table-responsive">
 <table class="table">
@@ -34,8 +35,10 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 echo '</table></div><p align="center"><input type="submit" value="Update Quantities" class="btn btn-info" /></form></p>';
 // $cart_contents from wishlist.php
 if ($cart_contents == 1) { // cart contains items
+	//echo '<script type="text/javascript" src="/js/saved.js"></script>';
 	echo '<script type="text/javascript" src="/livewater/js/saved.js"></script>';
 } else { // cart empty and remove item from local storage
+	//echo '<script type="text/javascript" src="/js/saved_cartnull.js"></script>';
 	echo '<script type="text/javascript" src="/livewater/js/saved_cartnull.js"></script>';
 }
 ?>

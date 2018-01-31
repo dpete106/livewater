@@ -138,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			list($_SESSION['customer_id']) = mysqli_fetch_array($r);
 			
+			//$location = '/' . BASE_URL . 'billing.php';
 			$location = '/livewater/' . BASE_URL . 'billing.php';
 			header("Location: $location");
 			exit();
@@ -165,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					list($_SESSION['customer_id']) = mysqli_fetch_array($r);
 					//exit($_SESSION['customer_id']);
 
+					//$location = '/' . BASE_URL . 'billing.php';
 					$location = '/livewater/' . BASE_URL . 'billing.php';
 					header("Location: $location");
 					exit();

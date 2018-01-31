@@ -15,6 +15,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
     <p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';
 
+	//echo '</div><script type="text/javascript" src="/js/sales.js"></script>';
 	echo '</div><script type="text/javascript" src="/livewater/js/sales.js"></script>';
 					
 }

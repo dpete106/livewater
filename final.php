@@ -11,10 +11,12 @@ $uid = session_id();
 // Check that this is valid:
 if (!isset($_SESSION['customer_id'])) { // Redirect the user.
 	//$location = 'https://' . BASE_URL . 'checkout.php';
+	//$location = '/' . BASE_URL . 'checkout.php';
 	$location = '/livewater/' . BASE_URL . 'checkout.php';
 	header("Location: $location");
 	exit();
 } elseif (!isset($_SESSION['response_code']) || ($_SESSION['response_code'] != 1)) {
+	//$location = '/' . BASE_URL . 'billing.php';
 	$location = '/livewater/' . BASE_URL . 'billing.php';
 	header("Location: $location");
 	exit();
