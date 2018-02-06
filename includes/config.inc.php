@@ -19,6 +19,7 @@ DEFINE('CONTACT_EMAIL', 'you@example.com');
 define('BASE_URI', 'http://livewater/');
 define('BASE_URL', 'cheese/');
 define('MYSQL', 'http://livewater/mysql.inc.php');
+//define('MYSQL', 'http://mysql.inc.php');
 
 function my_error_handler ($e_number, $e_message, $e_file, $e_line, $e_vars) {
 
