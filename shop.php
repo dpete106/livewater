@@ -3,9 +3,9 @@
 require('./includes/config.inc.php');
 
 // Validate the product type...
-if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
 	$page_title = 'Our Farm Fresh Products, by Category';
-	$type = 'farm';
+	$type = 'goodies';
 } elseif (isset($_GET['type']) && ($_GET['type'] === 'maple')) { 
 	$page_title = 'Our Maple Syrup Products';
 	$type = 'maple';	

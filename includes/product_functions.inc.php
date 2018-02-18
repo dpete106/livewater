@@ -23,7 +23,7 @@ function get_stock_status($stock) {
 function get_price($type, $regular, $sales) {
 	
 	// Prices are handled different based upon the product type:
-	if ($type === 'coffee') {
+	if ($type === 'dairy' || $type === 'maple') {
 		
 		// Only add the sale price if it's greater than 0 
 		// and less than the regular price:

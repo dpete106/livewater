@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 			echo '</ul>';
 			echo '</div>';
 		}
-	} elseif ($type == 'farm') {
+	} elseif ($type == 'goodies') {
 		if ($row['id'] == 5) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 			echo '<ul class="list-unstyled">';
@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	}
 }
 
-if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
 //	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
 }

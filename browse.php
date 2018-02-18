@@ -11,9 +11,9 @@ if (isset($_GET['type'], $_GET['category'], $_GET['id']) && filter_var($_GET['id
 	$sp_cat = $_GET['id'];
 	
 	// Validate the type:
-	if ($_GET['type'] === 'farm') {
+	if ($_GET['type'] === 'goodies') {
 		
-		$type = 'farm Fresh';
+		$type = 'goodies';
 		
 	} elseif ($_GET['type'] === 'dairy') {
 		
@@ -83,7 +83,7 @@ if (!$r) echo mysqli_error($dbc);
 
 // If records were returned, include the view file:
 if (mysqli_num_rows($r) > 0) {
-	if ($type === 'farm Fresh') {
+	if ($type === 'goodies') {
 		// Three versions of this file:
 		 include('./views/list_goodies.html');
 	} elseif ($type === 'dairy') {
