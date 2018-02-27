@@ -52,13 +52,15 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 	} else {
 
 		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
-		
 		$r = mysqli_query($dbc, $q);
+		
 		$result = mysqli_query($dbc, "SELECT * FROM carts");
-		//$num_rows = mysqli_num_rows($result);
-
-		//echo "$num_rows Rows\n";
-		mysqli_free_result($result);
+		$num_rows = mysqli_num_rows($result);
+		if ($num_rows > 0) { 
+			//echo "$num_rows Rows Insert\n";
+			mysqli_free_result($result);
+		} else {//echo "zero Rows Insert\n";
+		}
 	}
 		
 } elseif (isset($type, $pid, $_GET['action']) && ($_GET['action'] === 'remove') ) { // Remove it from the cart.
