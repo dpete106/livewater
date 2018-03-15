@@ -1,4 +1,12 @@
 <?php 
+if ($type == 'maple') {
+	echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+	echo '<h3>About Livewater Maple Syrup</h3>
+	<p><img style="float:left"; class="img-responsive"; style="float:left"; src="/livewater/images/sugar_horse2.jpg" width="50%" height="50%" />
+	Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
+	<p>Livewater Farm produces 3 grades of maple syrup: Grade A: Amber Color with Rich Taste, Grade A: Dark Color with Robust Taste, and Grade A: Golden Color with Delicate Taste.</p>';
+	echo '</div>';
+} 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 
 
