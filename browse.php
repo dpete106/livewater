@@ -89,7 +89,6 @@ if (mysqli_num_rows($r) > 0) {
 	} elseif ($type === 'dairy') {
 		 include('./views/list_coffees.html');
 
-		// Clear the stored procedure results:
 		mysqli_free_result($r);
 
 		//include('./includes/handle_review.php');
@@ -100,7 +99,6 @@ if (mysqli_num_rows($r) > 0) {
 	} elseif ($type === 'maple') {
 		 include('./views/list_coffees.html');
 
-		// Clear the stored procedure results:
 		mysqli_free_result($r);
 
 		//include('./includes/handle_review.php');

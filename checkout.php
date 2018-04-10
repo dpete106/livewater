@@ -107,17 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$shipping_errors['email'] = 'Please enter a valid email address!';
 	}
 	
-	// Check if the shipping address is the billing address:
-	//if (isset($_POST['use']) && ($_POST['use'] === 'Y')) {
-	//	$_SESSION['shipping_for_billing'] = true;
-	//	$_SESSION['cc_first_name']  = $_POST['first_name'];
-	//	$_SESSION['cc_last_name']  = $_POST['last_name'];
-	//	$_SESSION['cc_address']  = $_POST['address1'] . ' ' . $_POST['address2'];
-	//	$_SESSION['cc_city'] = $_POST['city'];
-	//	$_SESSION['cc_state'] = $_POST['state'];
-	//	$_SESSION['cc_zip'] = $_POST['zip'];
-	//}
-
 	if (empty($shipping_errors)) { // If everything's OK...
 		$_SESSION['shipping_for_billing'] = true;
 		$_SESSION['cc_first_name']  = $_POST['first_name'];
@@ -164,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				if (mysqli_num_rows($r) == 1) {
 
 					list($_SESSION['customer_id']) = mysqli_fetch_array($r);
-					//exit($_SESSION['customer_id']);
 
 					//$location = '/' . BASE_URL . 'billing.php';
 					$location = '/livewater/' . BASE_URL . 'billing.php';
@@ -184,7 +172,6 @@ $page_title = 'Checkout - Your Shipping Information';
 include('./includes/checkout_header.html');
 
 // Get the cart contents:
-//$q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'") UNION (SELECT CONCAT("C", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="coffee" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="coffee" AND c.user_session_id="'. $uid .'")';
 $q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'") 
 UNION (SELECT CONCAT("C", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="coffee" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="coffee" AND c.user_session_id="'. $uid .'")
 UNION (SELECT CONCAT("M", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="maple" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="maple" AND c.user_session_id="'. $uid .'")';

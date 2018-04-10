@@ -20,7 +20,6 @@ if (!isset($_SESSION['customer_id'])) { // Redirect the user.
 }
 
 // Require the database connection:
-//require(MYSQL);
 require('./mysql.inc.php');
 
 // Validate the billing form...
@@ -103,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$cc_last_four = 1234;
 //			$cc_last_four = substr($cc_number, -4);
 
-			// Call the stored procedure:
 			$shipping = $_SESSION['shipping'] * 100;
 			$customer_id = $_SESSION['customer_id'];
 
@@ -181,7 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			try {
 
 				// Include the Stripe library:
-				//require_once('lib/Stripe.php');
 				require_once('./vendor/autoload.php');
 				$stripe = array(
 					'secret_key'      => 'sk_test_GBsb65uAB1MefNcwXKRBmjp6',
@@ -189,7 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				);
 				\Stripe\Stripe::setApiKey($stripe['secret_key']);
 				// set your secret key: remember to change this to your live secret key in production
-				// see your keys here https://manage.stripe.com/account
 				//Stripe::setApiKey('pk_test_JRGK5txjD4IIgyJU5ztDwSz1');
 
 				// Charge the order:
@@ -278,7 +274,6 @@ $page_title = 'Checkout - Your Billing Information';
 include('./includes/checkout_header.html');
 
 // Get the cart contents:
-//$q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'") UNION (SELECT CONCAT("C", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="coffee" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="coffee" AND c.user_session_id="'. $uid .'")';
 $q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'")
 UNION (SELECT CONCAT("C", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="coffee" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="coffee" AND c.user_session_id="'. $uid .'")
 UNION (SELECT CONCAT("M", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="maple" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="maple" AND c.user_session_id="'. $uid .'")';

@@ -30,7 +30,6 @@ if (isset($_GET['sku'])) {
 
 if (isset($type, $pid, $_GET['action']) && ($_GET['action'] === 'remove') ) { // Remove it from the wish list.
 	
-	//$r = mysqli_query($dbc, "CALL remove_from_wish_list('$uid', '$type', $pid)");
 	$q = 'DELETE FROM wish_lists WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
 	$r = mysqli_query($dbc, $q);
 
