@@ -21,8 +21,6 @@ echo '<h3>View Customers With No Orders</h3><table class="table table-responsive
 <tbody>';
 
 // Make the query:
-//$q = 'SELECT o.id, FORMAT(total/100, 2) AS total, c.id AS cid, CONCAT(last_name, ", ", first_name) AS name, city, state, zip, email
-//FROM orders AS o JOIN customers AS c ON (o.customer_id = c.id) GROUP BY o.id DESC';
 $q = 'SELECT c.id AS cid, CONCAT(last_name, ", ", first_name) AS name, email, CAST(date_created AS DATE) AS DATE_CREATED
 FROM customers AS c  LEFT JOIN orders AS o ON (c.id = o.customer_id) WHERE o.customer_id IS NULL';
 
