@@ -2,7 +2,7 @@
 
 require('../includes/config.inc.php');
 
-$page_title = 'Farm Stand at Livewater';
+$page_title = 'Vermont Farm Stand at Livewater';
 include('../includes/header.html');
 
 require('../mysql.inc.php');
