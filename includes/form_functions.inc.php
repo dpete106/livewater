@@ -8,7 +8,7 @@ function create_form_input($name, $type, $errors = array(), $values = 'POST', $o
 	if ($values === 'SESSION') {
 		
 		if (isset($_SESSION[$name])) $value = htmlspecialchars($_SESSION[$name], ENT_QUOTES, 'UTF-8');
-		
+	
 	} elseif ($values === 'POST') {
 		
 		if (isset($_POST[$name])) $value = htmlspecialchars($_POST[$name], ENT_QUOTES, 'UTF-8');
@@ -18,10 +18,14 @@ function create_form_input($name, $type, $errors = array(), $values = 'POST', $o
 	}
 
 	// Conditional to determine what kind of element to create:
-	if ( ($type === 'text') || ($type === 'password') || ($type === 'email') ) { // Create text or password inputs.
+	if ( ($type === 'text') || ($type === 'textnreq') ||($type === 'password') || ($type === 'email') ) { // Create text or password inputs.
 		
 		// Start creating the input:
-		echo '<input type="' . $type . '" class="form-control" name="' . $name . '" id="' . $name . '"';
+		if ($type === 'textnreq') {
+			echo '<input type="text" class="form-control" name="' . $name . '" id="' . $name . '" ';
+		} else {
+			echo '<input type="' . $type . '" class="form-control" name="' . $name . '" id="' . $name . '" required';
+		}
 
 		// Add the value to the input:
 		if ($value) echo ' value="' . $value . '"';

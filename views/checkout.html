@@ -22,30 +22,32 @@ echo '<p><div class="popup" onclick="checkFunction()"><img src="/livewater/image
 
 ?>
 <!--<form action="/checkout.php" method="POST"> -->
-<form action="/livewater/checkout.php" method="POST">
+<form class="needs-validation" novalidate action="/livewater/checkout.php" method="POST">
 <?php // Need the form function:
 include('./includes/form_functions.inc.php');
 ?>
 	<fieldset>
-	<!--<div class="field"><label for="use"><strong>Use Same Address for Billing?</strong></label><br /><input type="checkbox" name="use" value="" id="use" <?php if (isset($_POST['use'])) echo 'checked="checked" ';?>/></div>-->
+	<!--<div class="field"><label for="use"><strong>Use Same Address for Billing?</strong></label><br /><input type="checkbox" name="use" value="" id="use" <?php //if (isset($_POST['use'])) echo 'checked="checked" ';?>/></div>-->
 
-	<div class="field"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php create_form_input('first_name', 'text', $shipping_errors); ?></div>
+	<!-- <div class="field"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php //create_form_input('first_name', 'text', $shipping_errors); ?></div> -->
+
+	<div class="mb-3"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php create_form_input('first_name', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid first name!</div></div>
 	
-	<div class="field"><label for="last_name"><strong>Last Name <span class="required">*</span></strong></label><br /><?php create_form_input('last_name', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="last_name"><strong>Last Name <span class="required">*</span></strong></label><br /><?php create_form_input('last_name', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid last name!</div></div>
 
-	<div class="field"><label for="address1"><strong>Street Address <span class="required">*</span></strong></label><br /><?php create_form_input('address1', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="address1"><strong>Street Address <span class="required">*</span></strong></label><br /><?php create_form_input('address1', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid street address!</div></div>
 
-	<div class="field"><label for="address2"><strong>Street Address, Continued</strong></label><br /><?php create_form_input('address2', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="address2"><strong>Street Address, Continued</strong></label><br /><?php create_form_input('address2', 'textnreq', $shipping_errors); ?></div>
 
-	<div class="field"><label for="city"><strong>City <span class="required">*</span></strong></label><br /><?php create_form_input('city', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="city"><strong>City <span class="required">*</span></strong></label><br /><?php create_form_input('city', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid city!</div></div>
 	
-	<div class="field"><label for="state"><strong>State <span class="required">*</span></strong> </label><br /><?php create_form_input('state', 'select', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="state"><strong>State <span class="required">*</span></strong> </label><br /><?php create_form_input('state', 'select', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid state!</div></div>
 	
-	<div class="field"><label for="zip"><strong>Zip Code <span class="required">*</span></strong></label><br /><?php create_form_input('zip', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="zip"><strong>Zip Code <span class="required">*</span></strong></label><br /><?php create_form_input('zip', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid zip code!</div></div>
 
-	<div class="field"><label for="phone"><strong>Phone Number <span class="required">*</span></strong></label><br /><?php create_form_input('phone', 'text', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="phone"><strong>Phone Number <span class="required">*</span></strong></label><br /><?php create_form_input('phone', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid phone number!</div></div>
 
-	<div class="field"><label for="email"><strong>Email Address <span class="required">*</span></strong></label><br /><?php create_form_input('email', 'email', $shipping_errors); ?></div>
+	<div class="mb-3"><label for="email"><strong>Email Address <span class="required">*</span></strong></label><br /><?php create_form_input('email', 'email', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid email!</div></div>
 	
 	<br clear="all" />
 	
@@ -55,5 +57,28 @@ include('./includes/form_functions.inc.php');
 //echo '<p>Please enter your shipping information. On the next page,  you\'ll be able to enter your billing information and complete the order. Please check the first box if your shipping and billing addresses are the same. <span class="required">*</span> Indicates a required field. </p>';
 //echo '</div>'; ?> 
 <!-- <script type="text/javascript" src="/js/checkout.js"></script> -->
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+
+            }, false);
+          });
+        }, false);
+      })();
+</script>
 <script type="text/javascript" src="/livewater/js/checkout.js"></script>
 
