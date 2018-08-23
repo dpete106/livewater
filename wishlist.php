@@ -125,8 +125,10 @@ $r = mysqli_query($dbc, $q);
 if (!$r) echo mysqli_error($dbc);
 
 if (mysqli_num_rows($r) > 0) { // Products to show!
+	$cart_contents = 1;
 	include('./views/wishlist.html');
 } else { // Empty cart!
+	$cart_contents = 0;
 	include('./views/emptylist.html');
 }
 

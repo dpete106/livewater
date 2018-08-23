@@ -1,10 +1,19 @@
 <?php 
 if ($type == 'maple') {
 	echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
-	echo '<h3>About Livewater Maple Syrup</h3>
-	<p><img style="float:left"; class="img-responsive"; style="float:left"; src="/livewater/images/sugar_horse2.jpg" width="50%" height="50%" />
-	Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
-	<p>Livewater Farm produces 3 grades of maple syrup: Grade A: Amber Color with Rich Taste, Grade A: Dark Color with Robust Taste, and Grade A: Golden Color with Delicate Taste.</p>';
+	echo '<div class="container">
+			<h3>About Livewater Maple Syrup</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/sugar_horse2.jpg" />
+	<p>Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
+				</div>
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/maple_grades.jpeg" />
+	<p>Livewater Farm produces 3 grades of maple syrup: Grade A: Amber Color with Rich Taste, Grade A: Dark Color with Robust Taste, and Grade A: Golden Color with Delicate Taste.</p>
+				</div>
+			</div>
+		</div>';
 	echo '</div>';
 } 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
@@ -15,6 +24,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	if ($type == 'dairy') {
 		if ($row['id'] == 1 or $row['id'] == 0 or $row['id'] == 0) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
 			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
@@ -23,29 +33,31 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 //                <p><img alt="' . $row['category'] . '" src="/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
 //                <a href="/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
 			echo '</ul>';
-			echo '</div>';
+			echo '</div></div>';
 		}
 	} elseif ($type == 'maple') {
 		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
 			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
                  <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
             </li>';	
 			echo '</ul>';
-			echo '</div>';
+			echo '</div></div>';
 		}
 	} elseif ($type == 'goodies') {
 		if ($row['id'] == 5) {
 			echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
 			echo '<ul class="list-unstyled">';
 			echo '<li><h5>' . $row['category'] . ' </h5>
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
-                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
+                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
              </li>';	
 			echo '</ul>';
-			echo '</div>';
+			echo '</div></div>';
 		}
 	}
 }

@@ -1,21 +1,24 @@
 <?php 
 include('./includes/product_functions.inc.php');
 
+echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+echo '<div class="text-center mb-4">';
+echo '<h2>Current Sale Items</h2>';
+
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	
-	echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
 
-	echo '<h2>Current Sale Items</h2>';
 
 	echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '::' . $row['name'] .'</h3>
   		<div class="row">
-		<div class="col-md-8">
-     	<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-4"><p>' . $row['description'] . '</p></div></div><p>' . 
+		<div class="col-md-6">
+     	<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div><div class="col-md-6"><p>' . $row['description'] . '</p></div></div><p>' . 
 		get_price('goodies', $row['price'], $row['sale_price']) . '
 		<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
     <p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';
 
-	//echo '</div><script type="text/javascript" src="/js/sales.js"></script>';
-	echo '</div><script type="text/javascript" src="/livewater/js/sales.js"></script>';
 					
 }
+echo '</div></div>';
+	//echo '<script type="text/javascript" src="/js/sales.js"></script>';
+	echo '</div><script type="text/javascript" src="/livewater/js/sales.js"></script>';

@@ -34,4 +34,8 @@ $(function() {
 	}
 	
 }); // document ready.
+function wishFunction() {
+    var popup = document.getElementById("wishPopup");
+    popup.classList.toggle("show");
+}
 

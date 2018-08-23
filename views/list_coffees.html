@@ -8,16 +8,17 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	
 	if (!$header) {
 		echo '<div style="background-color:rgba(192,192,192);" class="jumbotron">';
+		echo '<div class="text-center mb-4">';
 
 		echo '<h2>' . $category . '</h2>
 		<div class="row">
-		<div class="col-md-4">
-			<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /></div><div class="col-md-8"><p>' . $row['description'] . '</p></div></div>
-			<p><strong>All listed products are currently available.</strong></p>';
-
+		<div class="col-md-6">
+			<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /><p></div><div class="col-md-6">' . $row['description'] . '</p></div>
+		</div>';
+		echo '<p><strong>All listed products are currently available.</strong></p>';
 		//echo '<form action="/cart.php" method="get">
 		echo '<form action="/livewater/cart.php" method="get">
-			<input type="hidden" name="action" value="add" /><p><small><select style="width: 95%"; name="sku">';
+			<input type="hidden" name="action" value="add" /><p><small><select style="width: 75%"; name="sku">';
 
 		$header = true;
 
@@ -29,7 +30,8 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 echo '</select></small></p> <input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
 
-echo '</div>';
+echo '</div></div>';
+
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
 //	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
