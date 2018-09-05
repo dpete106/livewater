@@ -1,8 +1,8 @@
-<div style="background-color:rgba(192,192,192);" class="jumbotron">
+<div id="jumbotron" class="jumbotron">
 <h2>Wishlist</h2>
 <!--<form action="/wishlist.php" method="POST"> -->
 <form action="/livewater/wishlist.php" method="POST">
-<div class="table-responsive">
+<div style="background-color:rgba(0,255,0,0.3);" class="table-responsive">
 <table class="table">
 	<tr>
 		<th align="center">Item</th>
@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 } // End of WHILE loop. 
 echo '</table></div>';
 echo '<div class="text-center mb-4">';
-echo '<p><div class="popup" onclick="wishFunction()"><img src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
+echo '<p><div class="popup" onclick="wishFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="wishPopup">Please use this form to update your Wishlist of saved items. You may change the quantities, move items to your cart for purchasing, or remove items entirely.</span>
 </div></p></div>';
 echo '<p align="center"><input type="submit" value="Update Quantities" class="btn btn-info" /></form></p>';

@@ -1,10 +1,16 @@
-.jumbotron {
+#jumbotron {
 	background-image: url(/livewater/images/side_of_barn_490x368.jpg);
+}
+#checkout {
+	background-image: none;
 }
 .text-center {
 	font-weight: bold;
 }
 .col-md-6 {
+	font-weight: bold;
+}
+td {
 	font-weight: bold;
 }
 a {
