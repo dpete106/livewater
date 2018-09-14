@@ -168,6 +168,14 @@ if (!$r) echo mysqli_error($dbc);
 
 
 if (mysqli_num_rows($r) > 0) { // Products to show!
+?>
+<script type="text/javascript">
+    function codeAddress() {
+		localStorage.setItem('cart','1');
+    }
+    window.onload = codeAddress;
+</script>
+<?php
 	include('./views/cart.html');
 } else { // Empty cart!
 		if (isset($_SESSION['order_id']) ) { 
@@ -175,7 +183,14 @@ if (mysqli_num_rows($r) > 0) { // Products to show!
 			$_SESSION = array(); // Destroy the variables.
 			session_destroy(); // Destroy the session itself.
 		} else {}
-	
+?>
+<script type="text/javascript">
+    function codeAddress() {
+		localStorage.removeItem('cart');
+    }
+    window.onload = codeAddress;
+</script>
+<?php	
 	include('./views/emptycart.html');
 }
 

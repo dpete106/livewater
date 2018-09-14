@@ -10,8 +10,6 @@ $(function() {
 	$('.nav-item a#cart').removeClass('active');
 	$('.nav-item a#cart').addClass('active');
 	
-	localStorage.removeItem('cart');
-	
 	$( "div.carticon" ).html( '' ); 
 	
 	$( "div.carticon" ).html( '<a class="nav-link" id="carticon" href="/livewater/cart.php">' +

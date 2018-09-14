@@ -38,11 +38,11 @@ echo '<p><div class="popup" onclick="wishFunction()"><img style="border:0;" src=
 </div></p></div>';
 echo '<p align="center"><input type="submit" value="Update Quantities" class="btn btn-info" /></form></p>';
 echo '</div>';
-// $cart_contents from wishlist.php
-if ($cart_contents == 1) { // cart contains items
+// $wish_contents from wishlist.php
+if ($wish_contents == 1) { // list contains items
 	//echo '<script type="text/javascript" src="/js/saved.js"></script>';
 	echo '<script type="text/javascript" src="/livewater/js/saved.js"></script>';
-} else { // cart empty and remove item from local storage
+} else { // list empty and remove item from local storage
 	//echo '<script type="text/javascript" src="/js/saved_cartnull.js"></script>';
 	echo '<script type="text/javascript" src="/livewater/js/saved_cartnull.js"></script>';
 }

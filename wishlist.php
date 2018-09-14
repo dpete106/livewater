@@ -114,6 +114,35 @@ if (mysqli_num_rows($w) > 0) {
 } else { // Empty cart!
 	$cart_contents = 0;
 }
+
+if ($cart_contents == 1) { // Products to show!
+?>
+<script type="text/javascript">
+    function codeAddress() {
+		localStorage.setItem('cart','1');
+		alert('ok3')
+    }
+    window.onload = codeAddress;
+</script>
+<?php
+
+} else { // Empty cart!
+?>
+<script type="text/javascript">
+    function codeAddress() {
+		localStorage.removeItem('cart');
+		alert('ok4')
+		$( "div.carticon" ).html( '<a class="nav-link" id="carticon" href="/livewater/cart.php">' +
+			'<div class="icon-cart" style="float: left">' +
+			'<div class="cart-line-1" style="background-color: #E5E9EA"></div>' +
+			'<div class="cart-line-2" style="background-color: #E5E9EA"></div>' +
+			'<div class="cart-wheel" style="background-color: #E5E9EA"></div>' +
+			'</div></a>' ); 
+    }
+    window.onload = codeAddress;
+</script>
+<?php	
+}
 		
 // Get the wish list contents:
 $q = '(SELECT CONCAT("G", ncp.id) AS sku, wl.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM wish_lists AS wl INNER JOIN non_coffee_products AS ncp ON wl.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE wl.product_type="goodies" AND wl.user_session_id="'. $uid .'") 
@@ -125,10 +154,11 @@ $r = mysqli_query($dbc, $q);
 if (!$r) echo mysqli_error($dbc);
 
 if (mysqli_num_rows($r) > 0) { // Products to show!
-	$cart_contents = 1;
+	$wish_contents = 1;
+
 	include('./views/wishlist.html');
 } else { // Empty cart!
-	$cart_contents = 0;
+	$wish_contents = 0;
 	include('./views/emptylist.html');
 }
 
