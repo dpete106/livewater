@@ -120,7 +120,13 @@ if ($cart_contents == 1) { // Products to show!
 <script type="text/javascript">
     function codeAddress() {
 		localStorage.setItem('cart','1');
-		alert('ok3')
+		$( "div.carticon" ).html( '<a class="nav-link" id="carticon" href="/livewater/cart.php">' +
+			'<div class="icon-cart" style="float: left">' +
+			'<div class="cart-line-1" style="background-color: #E5E9EA"></div>' +
+			'<div class="cart-line-2" style="background-color: #E5E9EA"></div>' +
+			'<div class="cart-line-3" style="background-color: #E5E9EA"></div>' +
+			'<div class="cart-wheel" style="background-color: #E5E9EA"></div>' +
+			'</div></a>' ); 
     }
     window.onload = codeAddress;
 </script>
@@ -131,7 +137,6 @@ if ($cart_contents == 1) { // Products to show!
 <script type="text/javascript">
     function codeAddress() {
 		localStorage.removeItem('cart');
-		alert('ok4')
 		$( "div.carticon" ).html( '<a class="nav-link" id="carticon" href="/livewater/cart.php">' +
 			'<div class="icon-cart" style="float: left">' +
 			'<div class="cart-line-1" style="background-color: #E5E9EA"></div>' +
