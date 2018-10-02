@@ -17,12 +17,14 @@ echo '<h2>Your Shopping Cart</h2>';
 <?php // Display the products:
 
 $total = 0;
+$quantot = 0;
 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	
 	$price = get_just_price($row['price'], $row['sale_price']);
 	
 	$subtotal = $price * $row['quantity'];
+	$quantot = $quantot + $row['quantity'];
 	
 	echo '<tr><td>' . $row['category'] . '::' . $row['name'] . '</td>
 		<td align="center"><input type="text" name="quantity[' . $row['sku'] . ']" value="' . $row['quantity'] . '" size="2" class="small" /></td>
@@ -40,7 +42,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 } // End of WHILE loop. 
 
-$shipping = get_shipping($total);
+$shipping = get_shipping($total,$quantot);
 $total += $shipping;
 echo '<tr>
 	<td colspan="3" align="right"><strong>Shipping &amp; Handling</strong></td>

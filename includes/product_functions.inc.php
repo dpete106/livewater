@@ -84,7 +84,7 @@ function parse_sku($sku) {
 
 } // End of parse_sku() function.
 
-function get_shipping($total = 0) {
+function get_shipping($total = 0, $quantot) {
 	
 	// Set the base handling charges:
 	$shipping = 3;
@@ -101,9 +101,18 @@ function get_shipping($total = 0) {
 	} else {
 		$rate = .15;
 	}
+	// Rate is based upon the quantity:
+	if ($quantot < 2) {
+		$rate = 7.05;
+	} elseif ($quantot < 6) {
+		$rate = 12.85;
+	} else {
+		$rate = 17.65;
+	}
 	
 	// Calculate the shipping total:
-	$shipping = $shipping + ($total * $rate);
+	//$shipping = $shipping + ($total * $rate);
+	$shipping = $rate;
 
 	// Return the shipping total:
 	return $shipping;
