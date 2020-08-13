@@ -88,7 +88,7 @@ $body->setParts(array($plain, $html));
 // Establish the email parameters:
 
 $mail = new Mail\Message();
-$mail->setFrom('davestorkman@egret.tv');
+$mail->setFrom('dpete106@gmail.com');
 $mail->addTo($_SESSION['email']);
 $mail->setSubject("Order #{$_SESSION['order_id']} at the Coffee Site");
 $mail->setEncoding("UTF-8");
