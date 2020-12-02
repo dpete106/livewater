@@ -35,9 +35,9 @@ $shipping_errors = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	// Check for Magic Quotes:
-	if (get_magic_quotes_gpc()) {
-		$_POST['first_name'] = stripslashes($_POST['first_name']);
-	}
+	//if (get_magic_quotes_gpc()) {
+	//	$_POST['first_name'] = stripslashes($_POST['first_name']);
+	//}
 
 	// Check for a first name:
 	if (preg_match ('/^[A-Z \'.-]{2,20}$/i', $_POST['first_name'])) {
