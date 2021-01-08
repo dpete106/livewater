@@ -113,6 +113,7 @@ function get_shipping($total = 0, $quantot) {
 	// Calculate the shipping total:
 	//$shipping = $shipping + ($total * $rate);
 	$shipping = $rate;
+	$shipping = 0;
 
 	// Return the shipping total:
 	return $shipping;

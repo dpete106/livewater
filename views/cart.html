@@ -3,7 +3,7 @@ echo '<div id="jumbotron" class="jumbotron">';
 
 echo '<h2>Your Shopping Cart</h2>';
 ?>
-<!--<form action="/cart.php" method="POST"> -->
+<!--*URL*<form action="/cart.php" method="POST"> -->
 <form action="/livewater/cart.php" method="POST">
 <div style="background-color:rgba(0,255,0,0.3);" class="table-responsive">
 <table class="table">
@@ -44,12 +44,12 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 $shipping = get_shipping($total,$quantot);
 $total += $shipping;
-echo '<tr>
-	<td colspan="3" align="right"><strong>Shipping &amp; Handling</strong></td>
-	<td align="right">$' . number_format($shipping, 2) . '</td>
-	<td>&nbsp;</td>
-</tr>
-';
+//echo '<tr> *** 12/2020 UPDATE for local pickup only
+//	<td colspan="3" align="right"><strong>Shipping &amp; Handling</strong></td>
+//	<td align="right">$' . number_format($shipping, 2) . '</td>
+//	<td>&nbsp;</td>
+//</tr>
+//';
 
 echo '<tr>
 	<td colspan="3" align="right"><strong>Total</strong></td>
@@ -69,7 +69,7 @@ echo '<p><div class="popup" onclick="cartFunction()"><img style="border:0;" src=
 
 echo '</div>'; //jumbotron
 
-//echo '<script type="text/javascript" src="/js/cart.js"></script>';
+//*URL*echo '<script type="text/javascript" src="/js/cart.js"></script>';
 echo '<script type="text/javascript" src="/livewater/js/cart.js"></script>';
 
 ?>

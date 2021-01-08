@@ -1,6 +1,6 @@
 <div style="background-color:rgba(0,255,0,0.3);" class="jumbotron"> <!-- jumbotron -->
 
-<!-- <div ><img class="img-responsive"  src="/images/m44-shippingeasy-logo-support.jpg"  width="33%" height="33%" /></div> -->
+<!-- *URL*<div ><img class="img-responsive"  src="/images/m44-shippingeasy-logo-support.jpg"  width="33%" height="33%" /></div> -->
 
 <?php // Display the cart:
 include('./views/checkout_cart.html');
@@ -8,21 +8,24 @@ include('./views/checkout_cart.html');
 if (empty($shipping_errors)) { 
 
 } else {
+echo $shipping_errors[pickup];
 echo '<div class="alert alert-danger" role="alert">
-  Input Field Error below—check it out! 
+  Input Field Error below—check it out!!
 </div>';
 }
 echo '<div class="text-center mb-4">';
-echo '<img class="img-responsive"  src="/livewater/images/m44-shippingeasy-logo-support.jpg"  width="33%" height="33%" />';
-echo '<h2>Your Shipping Information</h2>';
-//echo '<p><div class="popup" onclick="checkFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
+//*URL*echo '<img class="img-responsive"  src="/livewater/images/m44-shippingeasy-logo-support.jpg"  width="33%" height="33%" />';
+//echo '<img class="img-responsive"  src="/images/m44-shippingeasy-logo-support.jpg"  width="33%" height="33%" />';
+echo '<h2>Your Order Information</h2>';
+
+//*URL*echo '<p><div class="popup" onclick="checkFunction()"><img style="border:0;" src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<p><div class="popup" onclick="checkFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="checkPopup">Please enter your shipping information. On the next page,  you\'ll be able to enter your billing information and complete the order. Please check the first box if your shipping and billing addresses are the same. <span class="required">*</span> Indicates a required field. </span>
 </div></p>';
 echo '</div>';
 
 ?>
-<!--<form action="/checkout.php" method="POST"> -->
+<!--*URL*<form action="/checkout.php" method="POST"> -->
 <form class="needs-validation" novalidate action="/livewater/checkout.php" method="POST">
 <?php // Need the form function:
 include('./includes/form_functions.inc.php');
@@ -30,7 +33,20 @@ include('./includes/form_functions.inc.php');
 	<fieldset>
 	<!--<div class="field"><label for="use"><strong>Use Same Address for Billing?</strong></label><br /><input type="checkbox" name="use" value="" id="use" <?php //if (isset($_POST['use'])) echo 'checked="checked" ';?>/></div>-->
 
-	<!-- <div class="field"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php //create_form_input('first_name', 'text', $shipping_errors); ?></div> -->
+	<!--<div class="field"><label for="pickup"><strong>Order Pick-up Day and Time <span class="required">*</span></strong></label><br /><?php create_form_input('pickup', 'text', $shipping_errors); ?>
+	<div class="invalid-feedback">Please enter a valid Order Pick-up Day and Time!</div></div>-->
+	<div class="mb-3"><label for="pickup"><strong>Order Pick-up Day and Time <span class="required">*</span></strong> </label>
+		<div class="form-group">
+		<select class="custom-select" name="pickup" required>
+		<option value="">Please select a pick-up time</option>
+		<option value="Tuesday, 9 to 10am">Tuesday, 9 to 10am</option>
+		<option value="Tuesday, 5 to 6pm">Tuesday, 5 to 6pm</option>
+		<option value="Saturday, 9 to 10am">Saturday, 9 to 10am</option>
+		<option value="Saturday, 5 to 6PM">Saturday, 5 to 6am</option>
+		</select>
+		<div class="invalid-feedback">Please enter a time to pick-up!</div>
+		</div>
+	</div>
 
 	<div class="mb-3"><label for="first_name"><strong>First Name <span class="required">*</span></strong></label><br /><?php create_form_input('first_name', 'text', $shipping_errors); ?><div class="invalid-feedback">Please enter a valid first name!</div></div>
 	
@@ -81,5 +97,6 @@ include('./includes/form_functions.inc.php');
         }, false);
       })();
 </script>
+<!--<script type="text/javascript" src="/js/checkout.js"></script>-->
 <script type="text/javascript" src="/livewater/js/checkout.js"></script>
 

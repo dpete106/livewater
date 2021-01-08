@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//}
 
 	// Check for a first name:
+	
 	if (preg_match ('/^[A-Z \'.-]{2,20}$/i', $_POST['first_name'])) {
 		$fn = addslashes($_POST['first_name']);
 	} else {
@@ -109,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	if (empty($shipping_errors)) { // If everything's OK...
 		$_SESSION['shipping_for_billing'] = true;
+		$_SESSION['cc_pickup']  = $_POST['pickup'];
 		$_SESSION['cc_first_name']  = $_POST['first_name'];
 		$_SESSION['cc_last_name']  = $_POST['last_name'];
 		$_SESSION['cc_address']  = $_POST['address1'] . ' ' . $_POST['address2'];

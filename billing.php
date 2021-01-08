@@ -14,7 +14,7 @@ $uid = session_id();
 // Check that this is valid:
 if (!isset($_SESSION['customer_id'])) { // Redirect the user.
 	$location = '/livewater/' . BASE_URL . 'checkout.php';
-	//$location = '/' . BASE_URL . 'checkout.php';
+	//*URL*$location = '/' . BASE_URL . 'checkout.php';
 	header("Location: $location");
 	exit();
 }
@@ -30,11 +30,18 @@ $billing_errors = array();
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-	if (get_magic_quotes_gpc()) {
-		$_POST['cc_first_name'] = stripslashes($_POST['cc_first_name']);
+	//if (get_magic_quotes_gpc()) {
+		//$_POST['cc_first_name'] = stripslashes($_POST['cc_first_name']);
 		// Repeat for other variables that could be affected.
-	}
+	//}
 
+	// Check for a pickup:
+	if (preg_match ('/^[A-Z0-9 \',.#-]{2,160}$/i', $_POST['cc_pickup'])) {
+		$cc_pickup = $_POST['cc_pickup'];
+	} else {
+		$billing_errors['cc_pickup'] = 'Please enter your pick-up day and time!';
+	}
+	
 	// Check for a first name:
 	if (preg_match ('/^[A-Z \'.-]{2,20}$/i', $_POST['cc_first_name'])) {
 		$cc_first_name = $_POST['cc_first_name'];
@@ -105,10 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$shipping = $_SESSION['shipping'] * 100;
 			$customer_id = $_SESSION['customer_id'];
 
-			$q1 = 'INSERT INTO orders (customer_id, shipping, credit_card_number, order_date) VALUES (?, ?, ?, NOW())';
+			$q1 = 'INSERT INTO orders (customer_id, shipping, credit_card_number, pickup_time, order_date) VALUES (?, ?, ?, ?, NOW())';
 			$affected = 0;
 			$stmt1 = mysqli_prepare($dbc, $q1);
-			mysqli_stmt_bind_param($stmt1, 'iii', $customer_id, $shipping, $cc_last_four);
+			mysqli_stmt_bind_param($stmt1, 'iiis', $customer_id, $shipping, $cc_last_four, $cc_pickup);
 			mysqli_stmt_execute($stmt1);
 			$affected += mysqli_stmt_affected_rows($stmt1);	
 			if (!$affected > 0) echo mysqli_error($dbc);
@@ -219,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					
 					// Redirect to the next page:
 					//$location = 'https://' . BASE_URL . 'final.php';
-					//$location = '/' . BASE_URL . 'final.php';
+					//*URL*$location = '/' . BASE_URL . 'final.php';
 					$location = '/livewater/' . BASE_URL . 'final.php';
 					header("Location: $location");
 					exit();

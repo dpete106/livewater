@@ -6,7 +6,7 @@ if ($type == 'maple') {
 			<div class="row">
 				<div class="col-md-6">	
 				<img class="img-responsive"; src="/livewater/images/sugar_horse2.jpg" />
-	<p>Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
+				<p>Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
 				</div>
 				<div class="col-md-6">	
 				<img class="img-responsive"; src="/livewater/images/maple_plastic_235.jpg"  />
@@ -64,7 +64,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 
 if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
-//	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
+//	*URL*echo '<script type="text/javascript" src="/js/goodies.js"></script>';
 }
 if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
 	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';

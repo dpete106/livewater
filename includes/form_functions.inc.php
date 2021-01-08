@@ -13,7 +13,7 @@ function create_form_input($name, $type, $errors = array(), $values = 'POST', $o
 		
 		if (isset($_POST[$name])) $value = htmlspecialchars($_POST[$name], ENT_QUOTES, 'UTF-8');
 		// Strip slashes if Magic Quotes is enabled:
-		if ($value && get_magic_quotes_gpc()) $value = stripslashes($value);
+		//if ($value && get_magic_quotes_gpc()) $value = stripslashes($value);
 
 	}
 
@@ -62,7 +62,7 @@ function create_form_input($name, $type, $errors = array(), $values = 'POST', $o
 				$data[$i] = $i;
 			}
 			
-		} // End of $name IF-ELSEIF.
+		}  // End of $name IF-ELSEIF.
 		
 		// Start the tag:
 		echo '<select name="' . $name  . '"';

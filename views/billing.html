@@ -1,7 +1,6 @@
 <div style="background-color:rgba(0,255,0,0.3);" class="jumbotron"> <!-- jumbotron -->
-<!--<div align="center"><img class="img-responsive" src="/images2/checkout_indicator2.png" /></div>-->
 <div align="center"><img class="img-responsive" src="/livewater/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div>
-<!-- <div align="center"><img class="img-responsive" src="/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div> -->
+<!-- *URL*<div align="center"><img class="img-responsive" src="/images/stripe_logo.jpg" width="33%" height="33%" title="Livewater Farm does not store credit card numbers !"/></div> -->
 <br clear="all" />
 
 <?php // Display the cart:
@@ -9,13 +8,12 @@ include('./views/checkout_cart.html');
 
 echo '<div class="text-center mb-4">';
 echo '<h2>Your Billing Information</h2>';
-//echo '<p><div class="popup" onclick="billFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
+//*URL*echo '<p><div class="popup" onclick="billFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<p><div class="popup" onclick="billFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="billPopup">Please enter your billing information below. Then click the button to complete your order. For your security, we will not store your billing information in any way. We accept Visa, MasterCard, American Express, and Discover.</span>
 </div></p></div>';
 
-//echo '<form action="/billing.php" method="POST" id="billing_form">';
-//echo '<form action="/billing.php" method="POST" id="billing_form">';
+//*URL*echo '<form action="/billing.php" method="POST" id="billing_form">';
 echo '<form action="/livewater/billing.php" method="POST" id="billing_form">';
 
 if (isset($bankerror)) {
@@ -42,12 +40,14 @@ include('./includes/form_functions.inc.php');
 
 	
 <?php	
-//echo '<h2>Shipping Information</h2><div class="popup" onclick="shipFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
+//echo '<h2>Order Information</h2><div class="popup" onclick="shipFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<div class="text-center mb-4">';
-echo '<h2>Shipping Information</h2><div class="popup" onclick="shipFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
- <span class="popuptext" id="shipPopup">If you need to change your shipping information go back one page and make changes.</span>
+echo '<h2>Order Information</h2><div class="popup" onclick="shipFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
+ <span class="popuptext" id="shipPopup">If you need to change your order information go back one page and make changes.</span>
 </div></div>';
 ?>
+	<div class="field"><label for="cc_pickup"><strong>Pick-up Day and Time </strong></label><br /><?php create_form_input('cc_pickup', 'text', $billing_errors, $values); ?></div>
+
 	<div class="field"><label for="cc_first_name"><strong>First Name </strong></label><br /><?php create_form_input('cc_first_name', 'text', $billing_errors, $values); ?></div>
 
 	<div class="field"><label for="cc_last_name"><strong>Last Name </strong></label><br /><?php create_form_input('cc_last_name', 'text', $billing_errors, $values); ?></div>
@@ -72,5 +72,5 @@ echo '<h2>Shipping Information</h2><div class="popup" onclick="shipFunction()"><
 <script type="text/javascript">
 Stripe.setPublishableKey('pk_test_JRGK5txjD4IIgyJU5ztDwSz1');
 </script>
-<!-- <script type="text/javascript" src="/js/billing.js"></script> -->
+<!-- *URL*<script type="text/javascript" src="/js/billing.js"></script> -->
 <script type="text/javascript" src="/livewater/js/billing.js"></script>

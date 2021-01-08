@@ -47,13 +47,16 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 } // End of WHILE loop. 
 
+//$shipping = get_shipping($total,$quantot);
+$quantot=0;
 $shipping = get_shipping($total,$quantot);
+
 $total += $shipping;
-echo '<tr>
-	<td> </td><th align="right">Shipping &amp; Handling</th>
-	<td align="right">$' . number_format($shipping, 2) . '</td>
-</tr>
-';
+//echo '<tr> *** 12/2020 UPDATE for local pickup only
+//	<td> </td><th align="right">Shipping &amp; Handling</th>
+//	<td align="right">$' . number_format($shipping, 2) . '</td>
+//</tr>
+//';
 
 $_SESSION['shipping'] = $shipping;
 

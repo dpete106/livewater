@@ -1,8 +1,13 @@
 <?php echo '<div style="background-color:rgba(0,255,0,0.3);" class="jumbotron">'; ?>
 <h2>Your Order is Complete</h2>
 <p>Thank you for your order (#<?php echo $_SESSION['order_id']; ?>). Please use this order number in any correspondence with us.</p>
-<p>A charge of $<?php echo number_format($_SESSION['order_total']/100, 2); ?> will appear on your credit card when the order ships. All orders are processed on the next business day. You will be contacted in case of any delays.</p>
+<p>A charge of $<?php echo number_format($_SESSION['order_total']/100, 2); ?> will appear on your credit card when the order is picked up.</p>
+<p>Please pick-up your order on <?php echo $_SESSION['cc_pickup'] . '. ';?></p> 
+<p>All orders are processed on the next business day. You will be contacted in case of any delays.</p>
+<!--*URL*<p>An email confirmation has been sent to your email address. <a href="/receipt.php?x=<?php echo $_SESSION['order_id'] . '&y=' . sha1($_SESSION['email']); ?>">Click here</a> to create a printable receipt of your order.</p>-->
 <p>An email confirmation has been sent to your email address. <a href="/livewater/receipt.php?x=<?php echo $_SESSION['order_id'] . '&y=' . sha1($_SESSION['email']); ?>">Click here</a> to create a printable receipt of your order.</p>
 <?php echo '</div>'; ?>
-<!--<script type="text/javascript" src="/js/emptycart.js"></script> -->
+<!--<p>A charge of $
+will appear on your credit card when the order ships. All orders are processed on the next business day. You will be contacted in case of any delays.</p>-->
+<!--*URL*<script type="text/javascript" src="/js/emptycart.js"></script> -->
 <script type="text/javascript" src="/livewater/js/emptycart.js"></script>
