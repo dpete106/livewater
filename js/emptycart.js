@@ -18,9 +18,9 @@ $(function() {
 			'<div class="cart-line-2" style="background-color: #E5E9EA"></div>' +
 			'<div class="cart-wheel" style="background-color: #E5E9EA"></div>' +
 			'</div></a>' ); 
-
-
-
+			
+	localStorage.removeItem('cart');
 	
+
 }); // document ready.
 
