@@ -10,6 +10,24 @@
 
 	gtag('config', 'UA-75621382-2');
 	</script>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R'
+        });
+      };
+      
+    function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+    </script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,16 +88,36 @@
 					<!--<a class="nav-link active"  id="home" href="/stand/index.php">Home <span class="sr-only">(current)</span></a> -->
 				</li>
 				<li class="nav-item"  >
+					<a class="nav-link" id="beef" href="/livewater/shop/beef/">Beef/Pork/Chicken</a>
+					<!--<a class="nav-link" id="beef" href="/shop/beef/">Beef/Pork/Chicken</a> -->
+				</li>
+				<li class="nav-item"  >
+					<a class="nav-link" id="bread" href="/livewater/shop/bread/">Bread</a>
+					<!--<a class="nav-link" id="bread" href="/shop/bread/">Bread</a> -->
+				</li>
+				<li class="nav-item"  >
+					<a class="nav-link" id="cand" href="/livewater/shop/cand/">Canned Goods</a>
+					<!--<a class="nav-link" id="cand" href="/shop/cand/">Canned Goods</a> -->
+				</li>
+				<li class="nav-item"  >
+					<a class="nav-link" id="java" href="/livewater/shop/java/">Coffee</a>
+					<!--<a class="nav-link" id="java" href="/shop/java/">Coffee Products</a> -->
+				</li>
+				<li class="nav-item"  >
+					<a class="nav-link" id="goodies" href="/livewater/shop/goodies/">Craft Products</a>
+					<!--<a class="nav-link" id="goodies" href="/shop/goodies/">Farm Fresh Products</a> -->
+				</li>
+				<li class="nav-item"  >
 					<a class="nav-link" id="cheese" href="/livewater/shop/dairy/">Dairy Products</a>
 					<!--<a class="nav-link" id="cheese" href="/shop/dairy/">Dairy Products</a> -->
 				</li>
 				<li class="nav-item"  >
-					<a class="nav-link" id="maple" href="/livewater/shop/maple/">Maple Products</a>
-					<!--<a class="nav-link" id="maple" href="/shop/maple/">Maple Products</a> -->
+					<a class="nav-link" id="produce" href="/livewater/shop/produce/">Farm Fresh Produce</a>
+					<!--<a class="nav-link" id="produce" href="/shop/produce/">Farm Fresh Products</a> -->
 				</li>
 				<li class="nav-item"  >
-					<a class="nav-link" id="goodies" href="/livewater/shop/goodies/">Farm Fresh Products</a>
-					<!--<a class="nav-link" id="goodies" href="/shop/goodies/">Farm Fresh Products</a> -->
+					<a class="nav-link" id="maple" href="/livewater/shop/maple/">Maple Products</a>
+					<!--<a class="nav-link" id="maple" href="/shop/maple/">Maple Products</a> -->
 				</li>
 				<li class="nav-item"  >
 					<a class="nav-link" id="sales" href="/livewater/shop/sales/">Sales</a>

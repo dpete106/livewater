@@ -23,7 +23,7 @@ function get_stock_status($stock) {
 function get_price($type, $regular, $sales) {
 	
 	// Prices are handled different based upon the product type:
-	if ($type === 'dairy' || $type === 'maple') {
+	if ($type === 'dairy' || $type === 'maple' || $type === 'produce' || $type === 'java' || $type === 'beef' || $type === 'bread') {
 		
 		// Only add the sale price if it's greater than 0 
 		// and less than the regular price:
@@ -66,12 +66,22 @@ function parse_sku($sku) {
 	$pid = substr($sku, 1);	
 	
 	// Validate the type:
-	if ($type_abbr === 'C') {
-		$type = 'coffee';
+	if ($type_abbr === 'D') {
+		$type = 'dairy';
+	} elseif ($type_abbr === 'B') {
+		$type = 'beef';
+	}  elseif ($type_abbr === 'C') {
+		$type = 'cand';
 	} elseif ($type_abbr === 'G') {
 		$type = 'goodies';
+	}elseif ($type_abbr === 'J') {
+		$type = 'java';
 	} elseif ($type_abbr === 'M') {
 		$type = 'maple';
+	}  elseif ($type_abbr === 'O') {
+		$type = 'bread';
+	} elseif ($type_abbr === 'P') {
+		$type = 'produce';
 	} else {
 		$type = NULL;
 	}

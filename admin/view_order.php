@@ -12,13 +12,13 @@ $order_id = false;
 if (isset($_GET['oid']) && (filter_var($_GET['oid'], FILTER_VALIDATE_INT, array('min_range' => 1))) ) { // First access
 	$order_id = $_GET['oid'];
 	$_SESSION['order_id'] = $order_id;
+	
 } elseif (isset($_SESSION['order_id']) && (filter_var($_SESSION['order_id'], FILTER_VALIDATE_INT, array('min_range' => 1))) ) {
 	$order_id = $_SESSION['order_id'];
 }
-
 // Stop here if there's no $order_id:
 if (!$order_id) {
-	echo '<h3>Error!</h3><p>This page has been accessed in error.</p>';
+	echo '<h3>Error1!</h3><p>This page has been accessed in error.</p>';
 	include('../admin/includes/footer.html');
 	exit();
 }
@@ -84,11 +84,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					if (!$r) echo mysqli_error($dbc);
 					
 				// Update the inventory...
-					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="coffee" AND oc.order_id=' . $order_id;
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="beef" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="cand" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="bread" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="dairy" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="java" AND oc.order_id=' . $order_id;
 					$r = mysqli_query($dbc, $q);
 					if (!$r) echo mysqli_error($dbc);
 					
 					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="maple" AND oc.order_id=' . $order_id;
+					$r = mysqli_query($dbc, $q);
+					if (!$r) echo mysqli_error($dbc);
+					
+					$q = 'UPDATE specific_coffees AS sc, order_contents AS oc SET sc.stock=sc.stock-oc.quantity WHERE sc.id=oc.product_id AND oc.product_type="produce" AND oc.order_id=' . $order_id;
 					$r = mysqli_query($dbc, $q);
 					if (!$r) echo mysqli_error($dbc);
 					
@@ -144,7 +164,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Define the query:
 $q = 'SELECT FORMAT(total/100, 2) AS total, FORMAT(shipping/100,2) AS shipping, credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %h:%i%p") AS od, email, CONCAT(last_name, ", ", first_name) AS name, CONCAT_WS(" ", address1, address2, city, state, zip) AS address, phone, customer_id, CONCAT_WS(" - ", ncc.category, ncp.name) AS item, ncp.stock, quantity, FORMAT(price_per/100,2) AS price_per, DATE_FORMAT(ship_date, "%b %e, %Y") AS sd FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN non_coffee_products AS ncp ON (oc.product_id = ncp.id AND oc.product_type="goodies") INNER JOIN non_coffee_categories AS ncc ON (ncc.id = ncp.non_coffee_category_id) WHERE o.id=' . $order_id . '
 UNION 
-SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="coffee") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="beef") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+UNION 
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="cand") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+UNION 
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="bread") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+UNION 
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="dairy") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+UNION 
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="java") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
+UNION 
+SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="produce") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id . '
 UNION 
 SELECT FORMAT(total/100, 2), FORMAT(shipping/100,2), credit_card_number, pickup_time, DATE_FORMAT(order_date, "%a %b %e, %Y at %l:%i%p"), email, CONCAT(last_name, ", ", first_name), CONCAT_WS(" ", address1, address2, city, state, zip), phone, customer_id, CONCAT_WS(" - ", gc.category, s.size, sc.caf_decaf, sc.ground_whole) AS item, sc.stock, quantity, FORMAT(price_per/100,2), DATE_FORMAT(ship_date, "%b %e, %Y") FROM orders AS o INNER JOIN customers AS c ON (o.customer_id = c.id) INNER JOIN order_contents AS oc ON (oc.order_id = o.id) INNER JOIN specific_coffees AS sc ON (oc.product_id = sc.id AND oc.product_type="maple") INNER JOIN sizes AS s ON (s.id=sc.size_id) INNER JOIN general_coffees AS gc ON (gc.id=sc.general_coffee_id) WHERE o.id=' . $order_id;
 
@@ -209,7 +239,7 @@ if (mysqli_num_rows($r) > 0) { // Display the order info:
 	echo '</div></div>';
 
 } else { // No records returned!
-	echo '<h3>Error!</h3><p>This page has been accessed in error.</p>';
+	echo '<h3>Error2!</h3><p>This page has been accessed in error.</p>';
 	include('../admin/includes/footer.html');
 	exit();	
 }
