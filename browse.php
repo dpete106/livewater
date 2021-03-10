@@ -21,6 +21,21 @@ if (isset($_GET['type'], $_GET['category'], $_GET['id']) && filter_var($_GET['id
 	} elseif ($_GET['type'] === 'maple') {
 		
 		$type = 'maple';
+	} elseif ($_GET['type'] === 'produce') {
+		
+		$type = 'produce';
+	} elseif ($_GET['type'] === 'java') {
+		
+		$type = 'java';
+	} elseif ($_GET['type'] === 'beef') {
+		
+		$type = 'beef';
+	} elseif ($_GET['type'] === 'bread') {
+		
+		$type = 'bread';
+	} elseif ($_GET['type'] === 'cand') {
+		
+		$type = 'cand';
 	}
 
 }
@@ -44,13 +59,13 @@ include('./includes/header.html');
 require('./mysql.inc.php');
 
 if ($type == 'dairy') {
-	$q = '(SELECT gc.description, gc.image, CONCAT("C", sc.id) AS sku, 
+	$q = '(SELECT gc.description, gc.image, CONCAT("D", sc.id) AS sku, 
 CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
 sc.stock, sc.price, sales.price AS sale_price 
 FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
 INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
 LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
-AND sales.product_type="coffee" AND 
+AND sales.product_type="dairy" AND 
 ((NOW() BETWEEN sales.start_date AND sales.end_date) 
 OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
 WHERE general_coffee_id='. $sp_cat .' AND stock>0 
@@ -62,7 +77,67 @@ sc.stock, sc.price, sales.price AS sale_price
 FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
 INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
 LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
-AND sales.product_type="coffee" AND 
+AND sales.product_type="maple" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+} elseif ($type == 'produce') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("P", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="produce" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+} elseif ($type == 'java') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("J", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="java" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+}  elseif ($type == 'beef') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("B", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="beef" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+}  elseif ($type == 'bread') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("O", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="bread" AND 
+((NOW() BETWEEN sales.start_date AND sales.end_date) 
+OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
+WHERE general_coffee_id='. $sp_cat .' AND stock>0 
+ORDER by name ASC)';
+}   elseif ($type == 'cand') {
+	$q = '(SELECT gc.description, gc.image, CONCAT("C", sc.id) AS sku, 
+CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole, CONCAT("$", FORMAT(sc.price/100, 2))) AS name, 
+sc.stock, sc.price, sales.price AS sale_price 
+FROM specific_coffees AS sc INNER JOIN sizes AS s ON s.id=sc.size_id 
+INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id 
+LEFT OUTER JOIN sales ON (sales.product_id=sc.id 
+AND sales.product_type="cand" AND 
 ((NOW() BETWEEN sales.start_date AND sales.end_date) 
 OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) 
 WHERE general_coffee_id='. $sp_cat .' AND stock>0 
@@ -86,7 +161,7 @@ if (mysqli_num_rows($r) > 0) {
 	if ($type === 'goodies') {
 		// Three versions of this file:
 		 include('./views/list_goodies.html');
-	} elseif ($type === 'dairy') {
+	} elseif ($type === 'dairy' || $type === 'maple' || $type === 'produce'|| $type === 'java' || $type === 'beef' || $type === 'bread' || $type === 'cand') {
 		 include('./views/list_coffees.html');
 
 		mysqli_free_result($r);
@@ -96,10 +171,10 @@ if (mysqli_num_rows($r) > 0) {
 		//$r = mysqli_query($dbc, "CALL select_reviews('$type', $sp_cat)");
 		//include('./views/review.html');
 
-	} elseif ($type === 'maple') {
-		 include('./views/list_coffees.html');
+	//} elseif ($type === 'maple') {
+	//	 include('./views/list_coffees.html');
 
-		mysqli_free_result($r);
+	//	mysqli_free_result($r);
 
 		//include('./includes/handle_review.php');
 		
