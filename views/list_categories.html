@@ -16,13 +16,80 @@ if ($type == 'maple') {
 		</div>';
 	echo '</div>';
 } 
+if ($type == 'produce') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Livewater Farm Fresh Produce</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/tomatoes_small.jpg" />
+				<p>We produce a variety of vegetables, and we offer a selection of canned goods, preserves and value added agricultural goods as well as products from local producers.</p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
+if ($type == 'java') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Rockingham Roasters Coffee</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/dark_roast.jpg" />
+				<p>Old World Coffee Roasting Company with New World Conscience offering premium yet affordable Italian style coffee in full 1-pound bags. </p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
+if ($type == 'beef') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Livewater Farm Beef/Pork/Chicken</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/pasturecows_680.jpg" />
+				<p>We raise 100% grass fed beef.  Our chickens are pasture-raised, no hormones or antibiotics, fed non-GMO grain, processed by Livewater Farm, whole frozen bird. </p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
+if ($type == 'bread') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Orchard Hill Breadworks</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/pasturecows_680.jpg" />
+				<p>Orchard Hill Breadworks believes that good food and happy, healthy communities go hand in hand. Bread was first baked for sale at Orchard Hill in 1997, since then three generations have planted orchards, tended gardens, built homes and helped a bakery grow and flourish.</p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
+if ($type == 'cand') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Livewater Farm Canned Goods</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-responsive"; src="/livewater/images/canned.jpeg" />
+				<p>We offer a selection of canned goods, and preserves. </p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
+
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 
 
 	
 	// Print the item within some HTML:
 	if ($type == 'dairy') {
-		if ($row['id'] == 1 or $row['id'] == 0 or $row['id'] == 0) {
+		//if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 0) {
+		if ($row['type'] == 'dairy') {
 			echo '<div id="jumbotron" class="jumbotron">';
 			echo '<div class="text-center mb-4">';
 			echo '<ul class="list-unstyled">';
@@ -35,8 +102,68 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 			echo '</ul>';
 			echo '</div></div>';
 		}
+	} elseif ($type == 'produce') {
+		if ($row['type'] == 'produce') {
+			echo '<div id="jumbotron" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
+			echo '</ul>';
+			echo '</div></div>';
+		}
 	} elseif ($type == 'maple') {
-		if ($row['id'] == 4 or $row['id'] == 5 or $row['id'] == 6) {
+		if ($row['type'] == 'maple') {
+			echo '<div id="jumbotron" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
+			echo '</ul>';
+			echo '</div></div>';
+		}
+	} elseif ($type == 'java') {
+		if ($row['type'] == 'java') {
+			echo '<div id="jumbotron" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
+			echo '</ul>';
+			echo '</div></div>';
+		}
+	} elseif ($type == 'beef') {
+		if ($row['type'] == 'beef') {
+			echo '<div id="jumbotron" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
+			echo '</ul>';
+			echo '</div></div>';
+		}
+	}  elseif ($type == 'bread') {
+		if ($row['type'] == 'bread') {
+			echo '<div id="jumbotron" class="jumbotron">';
+			echo '<div class="text-center mb-4">';
+			echo '<ul class="list-unstyled">';
+			echo '<li><h5>' . $row['category'] . ' </h5>
+                <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
+                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+            </li>';	
+			echo '</ul>';
+			echo '</div></div>';
+		}
+	}  elseif ($type == 'cand') {
+		if ($row['type'] == 'cand') {
 			echo '<div id="jumbotron" class="jumbotron">';
 			echo '<div class="text-center mb-4">';
 			echo '<ul class="list-unstyled">';
@@ -62,15 +189,22 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 	}
 }
 
-if (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'bread')) {
+	echo '<script type="text/javascript" src="/livewater/js/bread.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'beef')) {
+	echo '<script type="text/javascript" src="/livewater/js/beef.js"></script>';
+}  elseif (isset($_GET['type']) && ($_GET['type'] === 'cand')) {
+	echo '<script type="text/javascript" src="/livewater/js/cand.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'java')) {
+	echo '<script type="text/javascript" src="/livewater/js/java.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
 //	*URL*echo '<script type="text/javascript" src="/js/goodies.js"></script>';
-}
-if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
-	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
-}
-if (isset($_GET['type']) && ($_GET['type'] === 'maple')) {
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
+	echo '<script type="text/javascript" src="/livewater/js/dairy.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'produce')) {
+	echo '<script type="text/javascript" src="/livewater/js/produce.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'maple')) {
 	echo '<script type="text/javascript" src="/livewater/js/maple.js"></script>';
 }
-
 ?>

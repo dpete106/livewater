@@ -17,7 +17,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		</div>';
 		echo '<p><strong>All listed products are currently available.</strong></p>';
 		//echo '<form action="/cart.php" method="get">
-		echo '<form action="/livewater/cart.php" method="get">
+		echo '<form action="/livewater/cart.php" method="get" onsubmit="return validateRecaptcha();">
 			<input type="hidden" name="action" value="add" /><p><small><select style="width: 75%"; name="sku">';
 
 		$header = true;
@@ -28,18 +28,29 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	
 } // End of WHILE loop. 
 
-echo '</select></small></p> <input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
-
+echo '</select></small></p> <div id="html_element"></div><br>
+<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
+echo '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>';
 echo '</div></div>';
 
-if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
+if (isset($_GET['type']) && ($_GET['type'] === 'beef')) {
+	echo '<script type="text/javascript" src="/livewater/js/beef.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'bread')) {
+	echo '<script type="text/javascript" src="/livewater/js/bread.js"></script>';
+}  elseif (isset($_GET['type']) && ($_GET['type'] === 'cand')) {
+	echo '<script type="text/javascript" src="/livewater/js/cand.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'java')) {
+	echo '<script type="text/javascript" src="/livewater/js/java.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'goodies')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
-//	echo '<script type="text/javascript" src="/js/goodies.js"></script>';
-}
-if (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
-	echo '<script type="text/javascript" src="/livewater/js/coffee.js"></script>';
-}
-if (isset($_GET['type']) && ($_GET['type'] === 'maple')) {
+//	*URL*echo '<script type="text/javascript" src="/js/goodies.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'dairy')) {
+	echo '<script type="text/javascript" src="/livewater/js/dairy.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'produce')) {
+	echo '<script type="text/javascript" src="/livewater/js/produce.js"></script>';
+} elseif (isset($_GET['type']) && ($_GET['type'] === 'maple')) {
 	echo '<script type="text/javascript" src="/livewater/js/maple.js"></script>';
 }
 
