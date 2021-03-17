@@ -5,7 +5,7 @@ if ($type == 'maple') {
 			<h3>About Livewater Maple Syrup</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/sugar_horse2.jpg" />
+				<img class="img-fluid"; src="/livewater/images/sugar_horse2.jpg" />
 				<p>Pure Vermont Maple Syrup – Collected in traditional sap buckets and gathered using a sleigh pulled by our team of horses and boiled down on a wood fired evaporator.</p>
 				</div>
 				<div class="col-md-6">	
@@ -22,7 +22,7 @@ if ($type == 'produce') {
 			<h3>About Livewater Farm Fresh Produce</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/tomatoes_small.jpg" />
+				<img class="img-fluid"; src="/livewater/images/tomatoes_small.jpg" />
 				<p>We produce a variety of vegetables, and we offer a selection of canned goods, preserves and value added agricultural goods as well as products from local producers.</p>
 				</div>
 			</div>
@@ -35,7 +35,7 @@ if ($type == 'java') {
 			<h3>About Rockingham Roasters Coffee</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/dark_roast.jpg" />
+				<img class="img-fluid"; src="/livewater/images/rockingham_small.jpg" />
 				<p>Old World Coffee Roasting Company with New World Conscience offering premium yet affordable Italian style coffee in full 1-pound bags. </p>
 				</div>
 			</div>
@@ -48,7 +48,7 @@ if ($type == 'beef') {
 			<h3>About Livewater Farm Beef/Pork/Chicken</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/pasturecows_680.jpg" />
+				<img class="img-fluid"; src="/livewater/images/pasturecows_680.jpg" />
 				<p>We raise 100% grass fed beef.  Our chickens are pasture-raised, no hormones or antibiotics, fed non-GMO grain, processed by Livewater Farm, whole frozen bird. </p>
 				</div>
 			</div>
@@ -61,7 +61,7 @@ if ($type == 'bread') {
 			<h3>About Orchard Hill Breadworks</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/pasturecows_680.jpg" />
+				<img class="img-fluid"; src="/livewater/images/orchardhill_small.jpg" />
 				<p>Orchard Hill Breadworks believes that good food and happy, healthy communities go hand in hand. Bread was first baked for sale at Orchard Hill in 1997, since then three generations have planted orchards, tended gardens, built homes and helped a bakery grow and flourish.</p>
 				</div>
 			</div>
@@ -74,19 +74,30 @@ if ($type == 'cand') {
 			<h3>About Livewater Farm Canned Goods</h3>
 			<div class="row">
 				<div class="col-md-6">	
-				<img class="img-responsive"; src="/livewater/images/canned.jpeg" />
+				<img class="img-fluid"; src="/livewater/images/canned.jpeg" />
 				<p>We offer a selection of canned goods, and preserves. </p>
 				</div>
 			</div>
 		</div>';
 	echo '</div>';
 } 
-
+if ($type == 'dairy') {
+	echo '<div id="jumbotron" class="jumbotron">';
+	echo '<div class="container">
+			<h3>About Livewater Dairy</h3>
+			<div class="row">
+				<div class="col-md-6">	
+				<img class="img-fluid"; src="/livewater/images/pasturecows_680.jpg" />
+				<p>Using only the freshest, 100% grass fed milk produced on site by Livewater Farm, Livewater Dairy produces fresh cheese, aged raw milk cheese, and sweet cream butter.</p>
+				</div>
+			</div>
+		</div>';
+	echo '</div>';
+} 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
 
 
 	
-	// Print the item within some HTML:
 	if ($type == 'dairy') {
 		//if ($row['id'] == 1 or $row['id'] == 2 or $row['id'] == 0) {
 		if ($row['type'] == 'dairy') {
@@ -97,8 +108,6 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
                 <p><img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /><br />' . $row['description'] . '</p>
                 <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' <br>Products</a></h4>
              </li>';	
-//                <p><img alt="' . $row['category'] . '" src="/products/' . $row['image'] . '" /><br />' . $row['description'] . '<br />
-//                <a href="/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-default">View All ' . $row['category'] . ' <br>Products</a></p>
 			echo '</ul>';
 			echo '</div></div>';
 		}
