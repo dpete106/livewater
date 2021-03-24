@@ -10,12 +10,14 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		echo '<div id="jumbotron" class="jumbotron">';
 		echo '<div class="text-center mb-4">';
 
-		echo '<h2>' . $category . '</h2>
+		echo '<h3>' . $category . '</h3>
 		<div class="row">
 		<div class="col-md-6">
-			<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /><p></div><div class="col-md-6">' . $row['description'] . '</p></div>
-		</div>';
-		echo '<p><strong>All listed products are currently available.</strong></p>';
+			<img class="img-fluid" alt="' . $category . '" src="/livewater/products/' . $row['image'] . '" /></div>
+		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p>
+			<p>All listed products are currently available.</p>
+		';
+		echo '';
 		//echo '<form action="/cart.php" method="get">
 		echo '<form action="/livewater/cart.php" method="get" onsubmit="return validateRecaptcha();">
 			<input type="hidden" name="action" value="add" /><p><small><select style="width: 75%"; name="sku">';
@@ -29,7 +31,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 } // End of WHILE loop. 
 
 echo '</select></small></p> <div id="html_element"></div><br>
-<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
+<input type="submit" value="Add to Cart" class="btn btn-info" /></form></div></div>';
 echo '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
     </script>';
