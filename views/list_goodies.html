@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 			<div class="row">
 			<div class="col-md-6">
 		<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
-		<div class="col-md-6"><u>Description</u>' . $row['description'] . '<p>' . get_price($type, $row['price'], $row['sale_price']) . 
+		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . get_price($type, $row['price'], $row['sale_price']) . 
 		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
 		<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p></div></div>';
   	
