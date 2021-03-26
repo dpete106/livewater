@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75621382-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-75621382-2');
+	</script>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R'
+        });
+      };
+      
+    function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese products. Please visit us at the Farm Stand.">

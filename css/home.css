@@ -1,0 +1,32 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+html { width:100% ;
+    height:100% ;
+}
+body {
+  padding-top: 3.5rem;
+  width:100% ;
+    height:100% ;
+}
+iframe { width:100% ;
+        height:100% ;
+		border:none ;
+}
+.head1 {
+  text-align: center;
+  color: #7FFF00;
+  /*background-color: #ADFF2F;*/
+}
+.head1 p {
+  margin-bottom: 15px;
+}
+.container {
+  	/*background-image: url("http://localhost/livewater/images/pasturecows.jpg");*/
+}
+.jumbotron {
+	background-image: url(/livewater/images/pasturecows_header2.jpg);
+}
+/*
+#map {
+  height: 400px;  
+  width: 100%;  
+ } */
