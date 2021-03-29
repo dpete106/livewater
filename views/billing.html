@@ -8,7 +8,6 @@ include('./views/checkout_cart.html');
 
 echo '<div class="text-center mb-4">';
 echo '<h2>Your Billing Information</h2>';
-//*URL*echo '<p><div class="popup" onclick="billFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<p><div class="popup" onclick="billFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
   <span class="popuptext" id="billPopup">Please enter your billing information below. Then click the button to complete your order. For your security, we will not store your billing information in any way. We accept Visa, MasterCard, American Express, and Discover.</span>
 </div></p></div>';
@@ -32,15 +31,14 @@ include('./includes/form_functions.inc.php');
 <fieldset>
 
 	<!--<div class="field"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" id="cc_number" autocomplete="off" value="4242424242424242" /></div> -->
-	<div class="mb-3"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" id="cc_number" required autocomplete="cc-name" placeholder="1234 1234 1234 1234" value="" /></div>
+	<div class="mb-3"><label for="cc_number"><strong>Card Number</strong></label><br /><input type="text" name="cardnumber" id="cc_number" required autocomplete="cc_number" placeholder="1234123412341234" value="" /></div>
 
-	<div class="mb-3"><label for="exp_date"><strong>Expiration Date </strong></label><br /><input type="text" id="cc_exp_month" required autocomplete="cc-exp-month" placeholder="MM" value="" />/<input type="text" id="cc_exp_year" required autocomplete="cc-exp-year" placeholder="YYYY" value="" /></div>
+	<div class="mb-3"><label for="exp_date"><strong>Expiration Date </strong></label><br /><input type="text" name="cc-exp-month" id="cc_exp_month" required autocomplete="cc-exp-month" placeholder="MM" value="" />/<input type="text" name="cc-exp-year" id="cc_exp_year" required autocomplete="cc-exp-year" placeholder="YYYY" value="" /></div>
 
-	<div class="mb-3"><label for="cc_cvv"><strong>CVV</strong></label><br /><input type="text" id="cc_cvv" required autocomplete="cc-csc" value="" /></div>
+	<div class="mb-3"><label for="cc_cvv"><strong>CVV</strong></label><br /><input type="text" name="cvc" id="cc_cvv" required autocomplete="cc-csc" value="" /></div>
 
 	
 <?php	
-//echo '<h2>Order Information</h2><div class="popup" onclick="shipFunction()"><img src="/images/info_icon.png" alt="Info" height="21" width="21">
 echo '<div class="text-center mb-4">';
 echo '<h2>Order Information</h2><div class="popup" onclick="shipFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
  <span class="popuptext" id="shipPopup">If you need to change your order information go back one page and make changes.</span>
