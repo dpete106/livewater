@@ -6,8 +6,8 @@ include('./includes/product_functions.inc.php');
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 	if (!$header) {
-		echo '<div id="jumbotron" class="jumbotron">';
-		echo '<div class="text-center mb-4">';
+		//echo '<div id="jumbotron" class="jumbotron">';
+		//echo '<div class="text-center mb-4">';
 
 		//echo '<h2>' . $category . '</h2>
 		//		<div class="row">
@@ -23,19 +23,22 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 	} // End of $header IF.
 
-	echo '<h2>' . $row['name'] . '</h2>
+		echo '<div id="jumbotron" class="jumbotron">';
+		echo '<div class="text-center mb-4">';
+		echo '<h2>' . $row['name'] . '</h2>
 			<div class="row">
 			<div class="col-md-6">
 		<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
 		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . get_price($type, $row['price'], $row['sale_price']) . 
-		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>
-		<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p></div></div>';
+		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>';
+		if ($row['stock'] > 0) {
+		echo '<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';}
+		echo '</div></div></div></div>';
   	
 } // End of WHILE loop. 
 
 echo '<p> <br clear="all" /></p>';
-
-echo '</div></div>';
+//echo '</div></div>';
 
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
