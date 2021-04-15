@@ -51,13 +51,13 @@ echo '<div id="carouselExampleIndicators" class="carousel slide" data-ride="caro
 echo '<div id="jumbotron" class="jumbotron">';
 
 echo '<div class="text-center mb-4">';
-echo '<h3>Fresh Products at the Farm Stand</h3>';
+echo '<h3>On Sale at the Farm Stand</h3>';
 
 
 if (mysqli_num_rows($r) > 0) {
 	
 	echo '<dl style="width: 70%;margin: auto;" class="special fright">
-		<dt><a href="/livewater/shop/sales/">Sale Items</a></dt>';
+		<dt><a href="/livewater/shop/sales/" class="btn btn-primary" role="button">Shop Sale Now</a></dt>';
 	echo '<dd></dd></dl>';
 echo '<ul style="width: 70%;margin: auto;" class="list-unstyled">';
 

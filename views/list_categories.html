@@ -111,7 +111,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
                 <img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" /></div>';
 			echo '<div class="col-md-6">
 				<p>' . $row['description'] . '</p>
-                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>
+                <h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-primary" role="button">Shop ' . $row['category'] . ' Products</a></h4>
 				</div>';	
 			echo '</div>';
 			echo '</div></div>';
@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // Fetch each item.
             echo '<img class="img-fluid" alt="' . $row['category'] . '" src="/livewater/products/' . $row['image'] . '" />
 				</div>';
 			echo '<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p>';
-            echo '<h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="">View All ' . $row['category'] . ' Products</a></h4>';	
+            echo '<h4><a href="/livewater/browse/' . $type . '/' . urlencode($row['category']) . '/' . $row['id'] . '" class="btn btn-primary" role="button">Shop  ' . $row['category'] . ' Products</a></h4>';	
 			echo '</div></div></div></div>';
 	}
 }
