@@ -3,7 +3,9 @@ include('./includes/product_functions.inc.php');
 
 echo '<div id="jumbotron" class="jumbotron">';
 echo '<div class="text-center mb-4">';
-echo '<h2>Current Sale Items</h2>';
+echo '<h2>Brattleboro Farmer&apos;s Market Products</h2>';
+echo '<h3>These products available for curbside pickup at the BFM</h3>';
+echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	
