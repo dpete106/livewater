@@ -55,7 +55,11 @@ if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Ad
 		$r = mysqli_query($dbc, $q);
 		
 	} else {
-	
+		//test
+		if (isset($_GET['sales'])){
+			$qty=2;
+		}
+		//test
 		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
 		$r = mysqli_query($dbc, $q);
 		
