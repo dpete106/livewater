@@ -10,24 +10,7 @@
 
 	gtag('config', 'UA-75621382-2');
 	</script>
-    <script type="text/javascript">
-      var onloadCallback = function() {
-        grecaptcha.render('html_element', {
-          'sitekey' : '6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew'
-        });
-      };
-      
-    function validateRecaptcha() {
-        var response = grecaptcha.getResponse();
-        if (response.length === 0) {
-            alert("click not a robot");
-            return false;
-        } else {
-           // alert("validated");
-            return true;
-        }
-    }
-    </script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

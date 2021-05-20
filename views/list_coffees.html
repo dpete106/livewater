@@ -19,7 +19,8 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		';
 		echo '';
 		//echo '<form action="/cart.php" method="get">
-		echo '<form action="/livewater/cart.php" method="get" onsubmit="return validateRecaptcha();">
+		echo '<form action="/livewater/cart.php" method="post" onsubmit="return validateRecaptcha();">
+			<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div>
 			<input type="hidden" name="action" value="add" /><p><small><select class="custom-select" style="width: 75%"; name="sku" required>';
 		echo '<option value="">Please select a product</option>';
 		$header = true;
@@ -33,6 +34,20 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 //echo '</select></small></p> <div id="html_element"></div><br>
 echo '</select></small></p> 
 <input type="submit" value="Add to Cart" class="btn btn-info" /></form></div></div>';
+echo '<script type="text/javascript">
+  var onloadCallback = function() {
+  };
+  function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+</script>';
 echo '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
     </script>';
