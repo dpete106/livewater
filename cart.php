@@ -33,12 +33,15 @@ include('./includes/product_functions.inc.php');
 // If there's a SKU value in the URL, break it down into its parts:
 if (isset($_POST['sku'])) {
 	list($type, $pid) = parse_sku($_POST['sku']);
+	$action = $_POST['action'];
 }
 if (isset($_GET['sku'])) {
 	list($type, $pid) = parse_sku($_GET['sku']);
+	$action = $_GET['action'];
 }
 //if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Add a new product to the cart:
-if (isset($pid, $type, $_POST['action']) && ($_POST['action'] === 'add') ) { // Add a new product to the cart:
+//if (isset($pid, $type, $_POST['action']) && ($_POST['action'] === 'add') ) { // Add a new product to the cart:
+if (isset($pid, $type, $action) && ($action === 'add') ) { // Add a new product to the cart:
 
 	$qty = 1;
 	$cid = 0;
