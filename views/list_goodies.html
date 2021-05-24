@@ -22,23 +22,57 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		$header = true;
 
 	} // End of $header IF.
-
+	
 		echo '<div id="jumbotron" class="jumbotron">';
 		echo '<div class="text-center mb-4">';
+	//spam test
+		//echo '<h2>' . $row['name'] . '</h2>
+		//	<div class="row">
+		//	<div class="col-md-6">
+		//<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
+		//<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . get_price($type, $row['price'], $row['sale_price']) . 
+		//'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>';
+		//if ($row['stock'] > 0) {
+		//echo '<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';}
+		//echo '</div></div>';
+		
 		echo '<h2>' . $row['name'] . '</h2>
 			<div class="row">
 			<div class="col-md-6">
 		<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
 		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . get_price($type, $row['price'], $row['sale_price']) . 
 		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>';
-		if ($row['stock'] > 0) {
-		echo '<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add" class="btn btn-info">Add to Cart</a></p>';}
-		echo '</div></div></div></div>';
+		
+		echo '<form action="/livewater/cart.php" method="post"  onsubmit="return validateRecaptcha();>
+			<input type="hidden" name="action" value="add" /><input type="hidden" name="sku" value=' . $row['sku'] . ' />';
+		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div>';
+		echo '<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
+		
+		echo '</div></div>';
+//test end		
+		echo '</div></div>';
   	
 } // End of WHILE loop. 
 
 echo '<p> <br clear="all" /></p>';
 //echo '</div></div>';
+echo '<script type="text/javascript">
+  var onloadCallback = function() {
+  };
+  function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+</script>';
+echo '<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>';
 
 if (isset($_GET['type']) && ($_GET['type'] === 'farm')) {
 	echo '<script type="text/javascript" src="/livewater/js/goodies.js"></script>';
