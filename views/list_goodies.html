@@ -43,9 +43,9 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . get_price($type, $row['price'], $row['sale_price']) . 
 		'<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>';
 		
-		echo '<form action="/livewater/cart.php" method="post"  onsubmit="return validateRecaptcha();>
+		echo '<form action="/livewater/cart.php" method="post" onsubmit="return validateRecaptcha();">
 			<input type="hidden" name="action" value="add" /><input type="hidden" name="sku" value=' . $row['sku'] . ' />';
-		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div>';
+		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div><br>';
 		echo '<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
 		
 		echo '</div></div>';
