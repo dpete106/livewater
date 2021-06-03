@@ -6,10 +6,9 @@ echo '<div class="text-center mb-4">';
 echo '<h2>Brattleboro Farmer&apos;s Market Products</h2>';
 echo '<h3>These products available for curbside pickup at the BFM</h3>';
 echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
+echo '<P><div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div></p>';
 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-	
-
 
 	echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '::' . $row['name'] .'</h3>
   	<div class="row">
@@ -24,20 +23,19 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 		echo '<form action="/livewater/cart.php" method="post" onsubmit="return validateRecaptcha();">
 			<input type="hidden" name="action" value="add" /><input type="hidden" name="sku" value=' . $row['sku'] . ' />';
-		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div><br>';
+//		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div><br>';
 		echo '<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
 		
 		echo '</div></div>';
-
-					
 }
+
 echo '<script type="text/javascript">
   var onloadCallback = function() {
   };
   function validateRecaptcha() {
         var response = grecaptcha.getResponse();
         if (response.length === 0) {
-            alert("click not a robot");
+            alert("please click not a robot at top of the page");
             return false;
         } else {
            // alert("validated");
