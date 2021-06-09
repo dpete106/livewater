@@ -6,11 +6,11 @@ $(function() {
 	$('.nav-item a#adminhome').removeClass('active');
 	$('.nav-item a#addsales').removeClass('active');
 	$('.nav-item a#orders').removeClass('active');
-	$('.nav-item a#shipodr').removeClass('active');
+	$('.nav-item a#shipordr').removeClass('active');
 	$('.nav-item a#addcoffee').removeClass('active');
 	$('.nav-item a#addnoncoffee').removeClass('active');
 	$('.nav-item a#addinv').removeClass('active');
-	$('.nav-item a#addinv').addClass('active');
+	$('.nav-item a#shipordr').addClass('active');
 
 	
 }); // document ready.
