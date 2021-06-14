@@ -10,9 +10,9 @@ $page_title = 'Livewater - Administration';
 include('../dashboard/includes/header.html');
 // The header file begins the session.
 ?>
-<div style="background-color:rgba(192,192,192);" class="jumbotron"><div class="module">
+<div style="background-color:rgba(192,192,192);" class="jumbotron">
 <h3>Links</h3>
-</div></div>
+</div>
 <script type="text/javascript" src="/livewater/js/admin.js"></script>
 
 <?php include('../dashboard/includes/footer.html'); ?>
