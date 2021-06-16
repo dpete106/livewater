@@ -7,14 +7,14 @@ echo '<h2>Brattleboro Farmer&apos;s Market Products</h2>';
 echo '<h3>These products available for curbside pickup at the BFM</h3>';
 echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
 echo '<P><div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div></p>';
-
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-
-	echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '::' . $row['name'] .'</h3>
-  	<div class="row">
+	echo '<hr style="height:2px;border-width:0;color:gray;background-color:gray">';
+	//echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '::' . $row['name'] .'</h3>
+	echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '</h3>
+ 	<div class="row">
 		<div class="col-md-6">
      	<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
-		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p>
+		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . $row['name'] . '</p>
 		<p>' . 
 		get_price('goodies', $row['price'], $row['sale_price']) . '
 		<strong>Availability:</strong> ' . get_stock_status($row['stock']) . '</p>';
