@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75621382-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-75621382-2');
+	</script>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R'
+        });
+      };
+      
+    function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese products. Please visit us at the Farm Stand.">
@@ -95,12 +122,12 @@
 		<img src="http://localhost/livewater/images/farmstand_small.jpg" class="img-fluid" alt="Livewater Farm Stand">
       </div>
       <div class="col-md-4">
-        <h2>New Hours and Operation</h2>
-        <p>Due to the COVID-19 outbreak, we will no longer be a self-serve operation. We now ask that you email, call or text orders (see email and phone number listed above and below), which we will get together for you, and come pick them up during one of our two pick-up windows.</p>
-		<p>Please wear a face mask!</p>
-		<p>We are now beginning phase 1 of re-opening the farm stand! Beginning 6/22, we will now be open for drop in customers during our two pick up windows, meaning you can either place your order ahead of time to ensure your products OR you can drop in from 9-10 am or 5-6 pm to get your farm selections.
+        <h2>Hours and Operation</h2>
+        <p>Welcome to the Livewater Farm Stand!</p>
+		<p>Please stop by and visit us on our open days and during one of our two pick-up window hours.   </p>
+		<p>For ordering ahead, please shop online at <a class="" href="http://localhost/livewater/stand/index.php" role="">The Farm Stand</a>, email or text (see email and phone number listed above and below).  Order by 11am for the same day 5-6pm pick up window and by 7pm the evening prior for the 9-10am pick up window.</p>
+		<p>For all pre-orders, we will get them together for you.  Please come pick them up during one of our two pick-up windows.</p>
 		<p>We also ask that, at the time of your order, you let us know how you will be paying (cash, check or card [min $10]) and what time you will come pick it up.</p>
-		<p>For ordering ahead, please continue to email (preferred), call or text your orders by 11am for the same day 5-6pm pick up window and by 7pm the evening prior for the 9-10am pick up window.</p>
 		<p>We have created a menu of our products and prices to make this easier for you. Thank you all for your understanding as we work together to try to flatten the curve! Stay healthy & safe.</p>
        <p><a class="btn btn-secondary" href="http://localhost/livewater/menu.html" role="button">View Product Menu &raquo;</a></p>
       </div>
@@ -116,7 +143,7 @@
 			Monday: <b>Open</b>
 			</li>
 			<li>
-			Tuesday: Cloaed
+			Tuesday: Closed
 			</li>
 			<li>
 			Wednesday: Closed
