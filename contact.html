@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75621382-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-75621382-2');
+	</script>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R'
+        });
+      };
+      
+    function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese products. Please visit us at the Farm Stand.">
@@ -39,32 +66,33 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="http://localhost/livewater/css/home.css" rel="stylesheet">
-  </head>
-  <body style="width:100%; height:1800px">
+    <link href="http://localhost/livewater/css/contact.css" rel="stylesheet">
+ </head>
+  <body>
     <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="http://localhost/livewater/index.html">Livewater Farm & Dairy</a>
+    <a class="navbar-brand" href="http://localhost/livewater/">Livewater Farm & Dairy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link" href="http://localhost/livewater/index.html">Home<span class="sr-only"></span></a>
-        </li>
-         <li class="nav-item ">
-          <a class="nav-link" href="http://localhost/livewater/about.html">About<span class="sr-only"></span></a>
+          <a class="nav-link" href="http://localhost/livewater/">Home<span class="sr-only"></span></a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="http://localhost/livewater/contact.php">Contact<span class="sr-only"></span></a>
+          <a class="nav-link" href="http://localhost/livewater/about.html">About<span class="sr-only"></span></a>
         </li>
-         <li class="nav-item active">
-          <a class="nav-link" href="#">Product Menu<span class="sr-only">(current)</span></a>
+        <li class="nav-item active">
+          <a class="nav-link" href="http://localhost/livewater/contact.html">Contact<span class="sr-only"></span></a>
         </li>
-         <li class="nav-item ">
+        <li class="nav-item ">
+          <a class="nav-link" href="http://localhost/livewater/menu.html">Product Menu<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item ">
           <a class="nav-link" href="http://localhost/livewater/gallery.html">Gallery<span class="sr-only"></span></a>
         </li>
-       <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="http://localhost/livewater/stand/index.php">Shop Farm Stand</a>
         </li>
         <!--<li class="nav-item">
@@ -79,7 +107,7 @@
 <main role="main">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
+<div class="jumbotron">
     <div class="container">
 		<div class="head1">
 			<h1 class="display-3">Livewater Farm & Dairy</h1>
@@ -88,15 +116,49 @@
 	  	</div>
 
     </div>
-  </div>
-    <!-- Example row of columns -->
 
-
+</div>
+<body class="text-center">
+<!--    <form class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Send a Message to Livewater Farm & Dairy</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form> -->
+<div class="col-lg-12">
+	<h2>Contact Livewater Farm & Dairy</h2>
+	<form class="form-signin" action="../hero/connect.php" method="post">
+			<div class="form-group">
+			<!--<label for="inputFirstName">First Name</label>-->
+			<input type="text" class="form-control" id="inputFirstName" placeholder="FirstName" name="first_name" value="">
+			</div>
+		
+			<div class="form-group">
+			<!--<label for="inputLastName">Last Name</label>-->
+			<input type="text" class="form-control" id="inputLastName" placeholder="LastName" name="last_name" value="">
+			</div>
+		
+			<div class="form-group">
+			<label for="inputLastName">Message</label>
+			<textarea rows=5 cols=50 class="form-control" id="inputMessage" name="message"></textarea>
+			</div>
+		
+			<div class="form-group">
+			<!--<label for="inputEmail">Email Address</label>-->
+			<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value="">
+			</div>
+		
+			<div class="form-group">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
+			<input type="hidden" name="submitted" value="TRUE" />
+			</div>
+	</form>
+</div>
+</body>
 </main>
-    <div class="container">
-	<iframe src="https://docs.google.com/document/d/e/2PACX-1vQOkzD7fJlo6uZH_LbZS3behB58Esm9-eD183iZzICrAqeZKTq-3KiP3PmBDT_uG9lau8oxWZ-DDIYT/pub?embedded=true"  style="width:100%; height:1700px"></iframe>
-	</div>
-  <!-- FOOTER -->
 
 <footer class="footer mt-auto py-3">
   <div class="container">
@@ -107,7 +169,6 @@
 <!--
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
--->	<script src="http://localhost/livewater/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
+-->	<script src="http://localhost/livewater/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
 </html>
