@@ -44,19 +44,21 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	  	$total += $subtotal;
 
 	}
-
+	$ship1 = $row['ship']; // value 0 or 1
 } // End of WHILE loop. 
 
-//$shipping = get_shipping($total,$quantot);
 $quantot=0;
-$shipping = get_shipping($total,$quantot);
-
+// shipping or FSO
+if ($ship1 ==1) {
+	$shipping = get_shipping($total,$quantot);
+	echo '<tr>   
+	<td> </td><th align="right">Shipping &amp; Handling</th>
+	<td align="right">$' . number_format($shipping, 2) . '</td>
+	</tr>';
+} else {
+	$shipping = 0;
+}
 $total += $shipping;
-//echo '<tr> *** 12/2020 UPDATE for local pickup only
-//	<td> </td><th align="right">Shipping &amp; Handling</th>
-//	<td align="right">$' . number_format($shipping, 2) . '</td>
-//</tr>
-//';
 
 $_SESSION['shipping'] = $shipping;
 

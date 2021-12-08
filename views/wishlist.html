@@ -16,12 +16,13 @@
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 	$price = get_just_price($row['price'], $row['sale_price']);
 	$subtotal = $price * $row['quantity'];
+	// shipping or FSO
 	echo '<tr>
 		<td>' . $row['category'] . '::' . $row['name'] . '</td>
 		<td align="center"><input type="text" name="quantity[' . $row['sku'] . ']" value="' . $row['quantity'] . '" size="2" class="small" /></td>
 		<td align="right">$' . number_format($price, 2) . '</td>
 		<td align="right">$' . number_format($subtotal, 2) . '</td>
-		<td align="right"><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=move&qty=' . $row['quantity'] .'">+Cart</a><br /><a href="/livewater/wishlist.php?sku=' . $row['sku'] . '&action=remove">XRemove</a></td>
+		<td align="right"><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=move&qty=' . $row['quantity'] .'&ship=' . $row['ship'] .'">+Cart</a><br /><a href="/livewater/wishlist.php?sku=' . $row['sku'] . '&action=remove">XRemove</a></td>
 	</tr>
 	';
 	

@@ -29,9 +29,9 @@ echo '<div id="carouselExampleIndicators" class="carousel slide" data-ride="caro
 	<div class="text-center mb-4">
 		<h3>Welcome to the Farm Stand at Livewater!</h3>
 		<h4>Online orders:</h4>
-			<h5>Currently offering - curbside pickup.</h5>
-			<h5>Coming soon - orders to ship.</h5>
-		<p>Please use the links at the top to browse through our catalog. </p>
+			<h5>Currently offering - Farm Stand pickup orders and Specials: orders to ship (see below)</h5>
+			<h5></h5>
+		<p>Please use the links at the top to browse through our catalog of Farm Stand products. </p>
 		<div class="popup" onclick="homeFunction()"><img style="border:0;" src="/livewater/images/info_icon.png" alt="Info" height="21" width="21">
 		<span class="popuptext" id="homePopup">If you\'ve been here before, you can find things you saved by clicking on your Wishlist and Cart links. </span>
 		</div>
@@ -43,7 +43,6 @@ echo '<div id="jumbotron" class="jumbotron">';
 echo '<div class="text-center mb-4">';
 echo '<h3>Brattleboro Farmer&apos;s Market Products</h3>';
 
-
 if (mysqli_num_rows($r) > 0) {
 	
 	echo '<dl style="width: 70%;margin: auto;" class="special fright">
@@ -53,7 +52,9 @@ echo '<ul style="width: 70%;margin: auto;" class="list-unstyled">';
 
    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
    	//echo '<li><p><a href="/shop/sales/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
-   	echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+	if ($row['ship'] == 0) { //BFM only
+		echo '<li><p><a href="/livewater/shop/sales/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+	}
    }
 	
 	echo '</ul>';
@@ -61,6 +62,41 @@ echo '<ul style="width: 70%;margin: auto;" class="list-unstyled">';
 } // End of mysqli_num_rows() IF.
 echo '</div>'; // wrapper
 echo '</div>';
+// get sales data for shipping
+$q = "(SELECT CONCAT('G', ncp.id) AS sku, CONCAT('$', FORMAT(sa.price/100, 2)) AS sale_price, sa.ship, ncc.category, ncp.image, ncp.name FROM sales AS sa INNER JOIN non_coffee_products AS ncp ON sa.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id WHERE sa.ship=1 AND sa.product_type='goodies' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2) 
+UNION (SELECT CONCAT('B', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='beef' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('C', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='cand' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('D', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='dairy' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('J', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='java' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('O', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='bread' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('P', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='produce' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+UNION (SELECT CONCAT('M', sc.id), CONCAT('$', FORMAT(sa.price/100, 2)), sa.ship, gc.category, gc.image, CONCAT_WS(' - ', s.size, sc.caf_decaf, sc.ground_whole) FROM sales AS sa INNER JOIN specific_coffees AS sc ON sa.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id WHERE sa.ship=1 AND sa.product_type='maple' AND ((NOW() BETWEEN sa.start_date AND sa.end_date) OR (NOW() > sa.start_date AND sa.end_date IS NULL) ) ORDER BY RAND() LIMIT 2)
+";
+
+$r = mysqli_query($dbc, $q);
+
+echo '<div id="jumbotron" class="jumbotron">';
+echo '<div class="text-center mb-4">';
+echo '<h3>Livewater Farm Shipping Specials</h3>';
+
+if (mysqli_num_rows($r) > 0) {
+	
+	echo '<dl style="width: 70%;margin: auto;" class="special fright">
+		<dt><a href="/livewater/shop/ship/" class="btn btn-primary" role="button">Shop Products with Shipping</a></dt>';
+	echo '<dd></dd></dl>';
+echo '<ul style="width: 70%;margin: auto;" class="list-unstyled">';
+
+   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+	if ($row['ship'] == 1) {
+		echo '<li><p><a href="/livewater/shop/ship/#' . $row['sku'] . '" title="View This Product"><img class="img-fluid" alt="" src="/livewater/products/' . $row['image'] . '" /><span>' . $row['sale_price'] . '</span></a></p></li>';
+	}
+   }
+	
+	echo '</ul>';
+
+} // End of mysqli_num_rows() IF.
+echo '</div>'; // wrapper
+echo '</div>'; //end shipping jumbotron
 
 echo '<div id="jumbotron" class="jumbotron"><div class="text-center mb-4">';
 	echo '<div class="container">

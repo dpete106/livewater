@@ -38,7 +38,11 @@ include('./includes/form_functions.inc.php');
 	<div class="mb-3"><label for="pickup"><strong>Order Pick-up Day and Time <span class="required">*</span></strong> </label>
 		<div class="form-group">
 		<select class="custom-select" name="pickup" required>
-		<option value="">Please select a pick-up time</option>
+<?php	
+if ($ship1 == 1) {
+	echo '<option selected="selected" value="Shipping">Shipping</option>';
+}	else {
+		echo '<option value="">Please select a pick-up time</option>
 		<option value="BFM Curbside Saturday, 9 to 10am">BFM Curbside Saturday, 9 to 10am (05/01/2021 - 10/30/2021)</option>
 		<option value="Sunday, 10am">Sunday, 9 to 10am</option>
 		<option value="Sunday, 5 to 6pm">Sunday, 5 to 6pm</option>
@@ -49,7 +53,9 @@ include('./includes/form_functions.inc.php');
 		<option value="Friday, 9 to 10am">Friday, 9 to 10am</option>
 		<option value="Friday, 5 to 6PM">Friday, 5 to 6am</option>
 		<option value="Saturday, 9 to 10am">Saturday, 9 to 10am</option>
-		<option value="Saturday, 5 to 6PM">Saturday, 5 to 6am</option>
+		<option value="Saturday, 5 to 6PM">Saturday, 5 to 6am</option>';
+	}	
+?>
 		</select>
 		<div class="invalid-feedback">Please enter a time to pick-up!</div>
 		</div>

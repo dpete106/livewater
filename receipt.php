@@ -88,9 +88,10 @@ if (mysqli_stmt_num_rows($stmt) > 0) { // Display the order info:
 
 	// Show the shipping and total:
 	//echo '<tr> *** 12/2020 UPDATE for local pickup only
-	//    <td align="right" colspan="3"><strong>Shipping</strong></td>
-	//    <td align="right">$' . $shipping . '</td>
-	//</tr>';
+	echo '<tr>
+	    <td align="right" colspan="3"><strong>Shipping</strong></td>
+	    <td align="right">$' . $shipping . '</td>
+	</tr>';
 	echo '<tr>
 	    <td align="right" colspan="3"><strong>Total</strong></td>
 	    <td align="right">$' . $total . '</td>

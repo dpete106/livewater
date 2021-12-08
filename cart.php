@@ -39,13 +39,34 @@ if (isset($_GET['sku'])) {
 	list($type, $pid) = parse_sku($_GET['sku']);
 	$action = $_GET['action'];
 }
+//shipping or FSO
+$ship = 0;
+$ship0 = 0;
+$ship1 = 0;
+
+if (isset($_POST['ship'])) {
+	$ship = $_POST['ship'];
+}
+if (isset($_GET['ship'])) {
+	$ship = $_GET['ship'];
+}
+//check for a mix of ship products and FSO products already in the cart
+$q = 'SELECT id, quantity, ship FROM carts WHERE (user_session_id="'. $uid .'")';
+
+$r = mysqli_query($dbc, $q);
+	
+while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		if ($row['ship'] == 0) {$ship0++;}
+		if ($row['ship'] == 1) {$ship1++;}
+}
+
 //if (isset($pid, $type, $_GET['action']) && ($_GET['action'] === 'add') ) { // Add a new product to the cart:
 //if (isset($pid, $type, $_POST['action']) && ($_POST['action'] === 'add') ) { // Add a new product to the cart:
 if (isset($pid, $type, $action) && ($action === 'add') ) { // Add a new product to the cart:
-
 	$qty = 1;
 	$cid = 0;
-	$q = 'SELECT id, quantity FROM carts WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
+
+	$q = 'SELECT id, quantity, ship FROM carts WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
 
 	$r = mysqli_query($dbc, $q);
 	
@@ -53,21 +74,26 @@ if (isset($pid, $type, $action) && ($action === 'add') ) { // Add a new product 
 		$cid = $row['id'];
 		$qty = $qty + $row['quantity'];
 	}
-	if ($cid > 0) {
-		$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
-		
-		$r = mysqli_query($dbc, $q);
-		
+	if ( ($ship0 > 0 and $ship == 1 > 0) || ($ship1 > 0 and $ship == 0) ){ //shipping
+		echo '<div class="alert alert-danger" role="alert">
+		Please do not combine Shipping products with Farm Stand Pickup products in your cart.</div>';
 	} else {
-		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
-		$r = mysqli_query($dbc, $q);
+		if ($cid > 0) {
+			$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
 		
-		$result = mysqli_query($dbc, "SELECT * FROM carts");
-		$num_rows = mysqli_num_rows($result);
-		if ($num_rows > 0) { 
-			//echo "$num_rows Rows Insert\n";
-			mysqli_free_result($result);
-		} else {//echo "zero Rows Insert\n";
+			$r = mysqli_query($dbc, $q);
+		
+		} else {
+			$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity, ship) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .', '. $ship .')';
+			$r = mysqli_query($dbc, $q);
+		
+			$result = mysqli_query($dbc, "SELECT * FROM carts");
+			$num_rows = mysqli_num_rows($result);
+			if ($num_rows > 0) { 
+				//echo "$num_rows Rows Insert\n";
+				mysqli_free_result($result);
+			} else {//echo "zero Rows Insert\n";
+			}
 		}
 	}
 		
@@ -95,23 +121,27 @@ if (isset($pid, $type, $action) && ($action === 'add') ) { // Add a new product 
 	}
 
 	
-	if ($cid > 0) {
-		
-		$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
-		
-		$r = mysqli_query($dbc, $q);
-		
+	if ( ($ship0 > 0 and $ship == 1 > 0) || ($ship1 > 0 and $ship == 0) ){ //shipping
+		echo '<div class="alert alert-danger" role="alert">
+		Please do not combine Shipping products with Farm Stand Pickup products in your cart.</div>';
 	} else {
-
-		$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .')';
+		if ($cid > 0) {
 		
-		$r = mysqli_query($dbc, $q);
+			$q = 'UPDATE carts SET quantity='. $qty .', date_modified=NOW() WHERE id='. $cid .'';
+		
+			$r = mysqli_query($dbc, $q);
+		
+		} else {
 
+			$q = 'INSERT INTO carts (user_session_id, product_type, product_id, quantity, ship) VALUES ("'. $uid .'", "'. $type .'", '. $pid .', '. $qty .', '. $ship .')';
+		
+			$r = mysqli_query($dbc, $q);
+
+		}
+		// Remove it from the wish list:
+		$q = 'DELETE FROM wish_lists WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
+		$r = mysqli_query($dbc, $q);
 	}
-	
-	// Remove it from the wish list:
-	$q = 'DELETE FROM wish_lists WHERE (user_session_id="'. $uid .'" AND product_type="'. $type .'" AND product_id='. $pid .')';
-	$r = mysqli_query($dbc, $q);
 
 	
 
@@ -158,15 +188,15 @@ if (isset($pid, $type, $action) && ($action === 'add') ) { // Add a new product 
 }// End of main IF.
 		
 // Get the cart contents:
-
-$q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'") 
-UNION (SELECT CONCAT("B", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="beef" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="beef" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("C", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="cand" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="cand" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("D", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="dairy" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="dairy" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("J", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="java" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="java" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("O", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="bread" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="bread" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("P", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="produce" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="produce" AND c.user_session_id="'. $uid .'")
-UNION (SELECT CONCAT("M", sc.id), c.quantity, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="maple" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="maple" AND c.user_session_id="'. $uid .'")';
+//shipping
+$q = '(SELECT CONCAT("G", ncp.id) AS sku, c.quantity, c.ship,  ncc.category, ncp.name, ncp.price, ncp.stock, sales.price AS sale_price FROM carts AS c INNER JOIN non_coffee_products AS ncp ON c.product_id=ncp.id INNER JOIN non_coffee_categories AS ncc ON ncc.id=ncp.non_coffee_category_id LEFT OUTER JOIN sales ON (sales.product_id=ncp.id AND sales.product_type="goodies" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="goodies" AND c.user_session_id="'. $uid .'") 
+UNION (SELECT CONCAT("B", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="beef" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="beef" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("C", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="cand" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="cand" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("D", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="dairy" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="dairy" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("J", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="java" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="java" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("O", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="bread" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="bread" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("P", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="produce" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="produce" AND c.user_session_id="'. $uid .'")
+UNION (SELECT CONCAT("M", sc.id), c.quantity, c.ship, gc.category, CONCAT_WS(" - ", s.size, sc.caf_decaf, sc.ground_whole), sc.price, sc.stock, sales.price FROM carts AS c INNER JOIN specific_coffees AS sc ON c.product_id=sc.id INNER JOIN sizes AS s ON s.id=sc.size_id INNER JOIN general_coffees AS gc ON gc.id=sc.general_coffee_id LEFT OUTER JOIN sales ON (sales.product_id=sc.id AND sales.product_type="maple" AND ((NOW() BETWEEN sales.start_date AND sales.end_date) OR (NOW() > sales.start_date AND sales.end_date IS NULL)) ) WHERE c.product_type="maple" AND c.user_session_id="'. $uid .'")';
 
 $r = mysqli_query($dbc, $q);
 

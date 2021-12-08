@@ -1,17 +1,30 @@
 <?php 
 include('./includes/product_functions.inc.php');
-
+$head=0;
 echo '<div id="jumbotron" class="jumbotron">';
 echo '<div class="text-center mb-4">';
-echo '<h2>Brattleboro Farmer&apos;s Market Products</h2>';
-echo '<h3>These products available for curbside pickup at the BFM</h3>';
-echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
-echo '<P><div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div></p>';
+//echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+	if ($row['ship'] == 0) { //shipping or FSO
+		if ($head == 0) {
+			$head = 1;
+			echo '<h2>Brattleboro Farmer&apos;s Market Products</h2>';
+			echo '<h3>These products available for curbside pickup at the BFM</h3>';
+			echo '<p>When selecting the pickup time during the checkout process please choose BFM Curbside.</p>';
+			echo '<P><div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div></p>';
+		}
+	} elseif ($row['ship'] == 1) {
+		if ($head == 0) {
+			$head = 1;
+			echo '<h2>Livewater Farm Shipping Specials</h2>';
+			echo '<h3>These products available for shipping anywhere in the United States or Canada.</h3>';
+			echo '<P><div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div></p>';
+		}
+	}
 	echo '<hr style="height:2px;border-width:0;color:gray;background-color:gray">';
 	//echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '::' . $row['name'] .'</h3>
-	echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '</h3>
- 	<div class="row">
+		echo '<h3 id="' . $row['sku'] . '">' . $row['category'] . '</h3>
+		<div class="row">
 		<div class="col-md-6">
      	<img class="img-fluid" alt="' . $row['name'] . '" src="/livewater/products/' . $row['image']  . '" /></div>
 		<div class="col-md-6"><u>Description</u><p>' . $row['description'] . '</p><p>' . $row['name'] . '</p>
@@ -21,8 +34,11 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		
 //		echo '<p><a href="/livewater/cart.php?sku=' . $row['sku'] . '&action=add&sales=yes" class="btn btn-info">Add to Cart</a></p>';
 
-		echo '<form action="/livewater/cart.php" method="post" onsubmit="return validateRecaptcha();">
+		//echo '<form action="/livewater/cart.php" method="post" onsubmit="return validateRecaptcha();">
+		echo '<form action="/livewater/cart.php" method="post">
 			<input type="hidden" name="action" value="add" /><input type="hidden" name="sku" value=' . $row['sku'] . ' />';
+		if ($row['ship'] == 1) { //shipping in cart
+			echo '<input type="hidden" name="ship" value="1" />';}
 //		echo '<div class="g-recaptcha" data-sitekey="6LeEPJEaAAAAAGNq9pi6ByqHP_E7P92x8RpRVWew"></div> <div id="html_element"></div><br>';
 		echo '<input type="submit" value="Add to Cart" class="btn btn-info" /></form>';
 		

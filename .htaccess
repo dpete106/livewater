@@ -9,6 +9,9 @@ RewriteRule ^browse/(dairy|goodies|maple|produce|java|beef|bread|cand)/([A-Za-z\
 # For sales:
 # RewriteRule ^shop/sales/?$ /sales.php
 RewriteRule ^shop/sales/?$ sales.php
+# For shipping:
+# RewriteRule ^shop/ship/?$ /ship.php
+RewriteRule ^shop/ship/?$ ship.php
 # For HTTPS pages:
 # RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ http://%{HTTP_HOST}/$1 [R=301,L]
 RewriteRule ^cheese/index.php/?$ /index.php
