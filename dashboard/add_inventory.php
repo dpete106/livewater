@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
 		// Define the two queries:
 		$q1 = 'UPDATE specific_coffees SET stock=stock+? WHERE id=?';
+		//$q1 = 'UPDATE specific_coffees SET stock=? WHERE id=?';  if you want to reset the inventory quantity
 		$q2 = 'UPDATE non_coffee_products SET stock=stock+? WHERE id=?';
 
 		// Prepare the statements:
@@ -35,22 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
 		// Loop through each submitted value:
 		foreach ($_POST['add'] as $sku => $qty) {
-			
 			// Validate the added quantity:
 			if (filter_var($qty, FILTER_VALIDATE_INT, array('min_range' => 1))) {
 
 				// Parse the SKU:
 				list($type, $id) = parse_sku($sku);
-				
 				// Determine which query to execute based upon the type:
-				if ($type === 'coffee') {
+				if ($type === 'cand') { // here for specific_coffees products type is always cand
 					// Execute the query:
 					mysqli_stmt_execute($stmt1);
 					
 					// Add to the affected rows:
 					$affected += mysqli_stmt_affected_rows($stmt1);				
 
-				} elseif ($type === 'goodies') {
+				} elseif ($type === 'goodies') { // non_coffee_products
 					// Execute the query:
 					mysqli_stmt_execute($stmt2);
 					
