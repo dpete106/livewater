@@ -11,16 +11,17 @@ require('../mysql.inc.php');
 
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {	
+	// Need the product functions:
+	require('../includes/product_functions.inc.php');
 
 	// Check for a added inventory:
 	if (isset($_POST['add']) && is_array($_POST['add'])) {
 		
 		// Need the product functions:
-		require('../includes/product_functions.inc.php');
+		//require('../includes/product_functions.inc.php');
 		
 		// Define the two queries:
 		$q1 = 'UPDATE specific_coffees SET stock=stock+? WHERE id=?';
-		//$q1 = 'UPDATE specific_coffees SET stock=? WHERE id=?';  if you want to reset the inventory quantity
 		$q2 = 'UPDATE non_coffee_products SET stock=stock+? WHERE id=?';
 
 		// Prepare the statements:
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Parse the SKU:
 				list($type, $id) = parse_sku($sku);
 				// Determine which query to execute based upon the type:
-				if ($type === 'cand') { // here for specific_coffees products type is always cand
+				if ($type === 'cand'|| $type === 'beef') { // here for specific_coffees products type is always cand
 					// Execute the query:
 					mysqli_stmt_execute($stmt1);
 					
@@ -66,6 +67,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		echo "<h4>$affected Items(s) Were Updated!</h4>";
 
 	} // End of $_POST['add'] IF.
+	
+	if (isset($_POST['reset']) && is_array($_POST['reset'])) {
+		
+		// Need the product functions:
+		//require('../includes/product_functions.inc.php');
+		
+		// Define the two queries:
+		$q1 = 'UPDATE specific_coffees SET stock=? WHERE id=?';
+		$q2 = 'UPDATE non_coffee_products SET stock=? WHERE id=?';
+
+		// Prepare the statements:
+		$stmt1 = mysqli_prepare($dbc, $q1);
+		$stmt2 = mysqli_prepare($dbc, $q2);
+		
+		// Bind the variables:
+		mysqli_stmt_bind_param($stmt1, 'ii', $qty, $id);
+		mysqli_stmt_bind_param($stmt2, 'ii', $qty, $id);
+		
+		// Count the number of affected rows:
+		$affected = 0;
+		
+		// Loop through each submitted value:
+		foreach ($_POST['reset'] as $sku => $qty) {
+			// Validate the added quantity:
+			if (filter_var($qty, FILTER_VALIDATE_INT, array('min_range' => 1))) {
+
+				// Parse the SKU:
+				list($type, $id) = parse_sku($sku);
+				// Determine which query to execute based upon the type:
+				if ($type === 'cand' || $type === 'beef') { // here for specific_coffees products type is always cand
+					// Execute the query:
+					mysqli_stmt_execute($stmt1);
+					
+					// Add to the affected rows:
+					$affected += mysqli_stmt_affected_rows($stmt1);				
+
+				} elseif ($type === 'goodies') { // non_coffee_products
+					// Execute the query:
+					mysqli_stmt_execute($stmt2);
+					
+					// Add to the affected rows:
+					$affected += mysqli_stmt_affected_rows($stmt2);				
+
+				}
+				
+			} // End of IF.
+
+		} // End of FOREACH.
+		
+		// Print a message:
+		echo "<h4>$affected Items(s) Were Reset!</h4>";
+
+	} // End of $_POST['reset'] IF.
 
 } // End of the submission IF.
 
@@ -85,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		    <th align="right">Normal Price</th>
 		    <th align="right">Quantity in Stock</th>
 		    <th align="center">Add</th>
+		    <th align="center">Reset</th>
 		  </tr></thead>
 		<tbody>		
 		<?php
@@ -100,13 +155,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		    <td align="center">' . $row['price'] .'</td>
 		    <td align="center">' . $row['stock'] .'</td>
 		    <td align="center"><input type="text" name="add[' . $row['sku'] . ']"  id="add[' . $row['sku'] . ']" size="5" class="small" /></td>
+		    <td align="center"><input type="text" name="reset[' . $row['sku'] . ']"  id="reset[' . $row['sku'] . ']" size="5" class="small" /></td>
 		  </tr>';
 		}
 		
 ?>
 
 	</tbody></table>
-	<div class="field"><input type="submit"  class="btn btn-info" value="Add The Inventory" class="button" /></div>	
+	<div class="field"><input type="submit"  class="btn btn-info" value="Add The Inventory" class="button" />	
+	<input type="submit"  class="btn btn-info" value="Reset The Inventory" class="button" /></div>	
 	</fieldset>
 </form>
 </div></div>
