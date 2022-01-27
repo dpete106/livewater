@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Parse the SKU:
 				list($type, $id) = parse_sku($sku);
 				// Determine which query to execute based upon the type:
-				if ($type === 'cand'|| $type === 'beef') { // here for specific_coffees products type is always cand
+				if ($type === 'beef' || $type === 'bread' || $type === 'cand' || $type === 'dairy' || $type === 'java' || $type === 'maple' || $type === 'produce') { // here for specific_coffees products type is always cand
 					// Execute the query:
 					mysqli_stmt_execute($stmt1);
 					
@@ -90,13 +90,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
 		// Loop through each submitted value:
 		foreach ($_POST['reset'] as $sku => $qty) {
+		//echo "<h4>qty = $qty</h4>";
 			// Validate the added quantity:
-			if (filter_var($qty, FILTER_VALIDATE_INT, array('min_range' => 1))) {
-
+			//if (filter_var($qty, FILTER_VALIDATE_INT, array('min_range' => 1))) {
+			if (filter_var($qty, FILTER_VALIDATE_INT, array('min_range' => 1)) || $qty == "zero") {
+				if ($qty == "zero") {
+					$qty = 0;
+				}
 				// Parse the SKU:
 				list($type, $id) = parse_sku($sku);
 				// Determine which query to execute based upon the type:
-				if ($type === 'cand' || $type === 'beef') { // here for specific_coffees products type is always cand
+				if ($type === 'beef' || $type === 'bread' || $type === 'cand' || $type === 'dairy' || $type === 'java' || $type === 'maple' || $type === 'produce') { // here for specific_coffees products type is always cand
 					// Execute the query:
 					mysqli_stmt_execute($stmt1);
 					
@@ -131,7 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form action="add_inventory.php" method="post" accept-charset="utf-8">
 
 	<fieldset><legend>Indicate how many additional quantity of each product should be added to the inventory.</legend>
-	
+		<legend>Use numbers to Reset an item's inventory.</legend>
+		<legend>To Reset inventory to zero, key in the text "zero".</legend>
 		<table class="table table-responsive table-sm" border="0" width="100%" cellspacing="4" cellpadding="4">
 		<thead>
 			<tr>
