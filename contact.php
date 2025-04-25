@@ -8,11 +8,11 @@ session_start();
   <!-- Global site tag (gtag.js) - Google Analytics -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese products. Please visit us at the Farm Stand.">
-    <meta name="keywords" content="vermont cheese">
+    <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese, milk and maple syrup products. Please shop at the Farm Stand.">
+    <meta name="keywords" content="vermont milk cheese maple syrup beef">
 	<meta name="author" content="livewaterfarm.net">
     <meta name="generator" content="Jekyll v4.0.1">
-	<title>a Vermont dairy farm producing cheese and butter&#124; Livewater Farm&amp; Dairy;</title>
+	<title>a Vermont dairy farm producing cheese and maple syrup&#124; Livewater Farm&amp; Dairy;</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script> 
@@ -163,7 +163,7 @@ session_start();
 		<div class="head1">
 		
 			<h1 class="display-3">Livewater Farm & Dairy</h1>
-			<p>Livewater Farm &amp; Dairy &#8211; a Vermont grass based dairy farm producing cheese</p>
+			<p>Livewater Farm &amp; Dairy &#8211; a Vermont grass based dairy farm producing cheese and maple syrup</p>
 			<p><a class="btn btn-primary btn-lg" href="http://localhost/livewater/shop.html" role="button">Shop Farm Stand &raquo;</a></p>
 			<!--<p><a class="btn btn-primary btn-lg" href="https://livewaterfarm.net/shop.html" role="button">Shop Farm Stand &raquo;</a></p> -->
 	  	</div>
@@ -294,7 +294,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 -->	
 <!--<script src="https://livewaterfarm.net/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body> -->
 <script src="http://localhost/livewater/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
-
+.
 </html>
 <?php
 
