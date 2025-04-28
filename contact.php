@@ -6,6 +6,14 @@ session_start();
 <html lang="en">
   <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BVD1C8EZM"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2BVD1C8EZM');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A Vermont grass based dairy farm operation sustainably producing organic cheese, milk and maple syrup products. Please shop at the Farm Stand.">
@@ -16,6 +24,9 @@ session_start();
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script> 
+    $(function(){
+      $("#includedMenu").load("http://localhost/livewater/includes/header_menu.html"); 
+    });
     $(function(){
       $("#includedContent").load("http://localhost/livewater/includes/main_header.html"); 
     });
@@ -116,59 +127,13 @@ session_start();
     <link href="http://localhost/livewater/css/contact.css" rel="stylesheet">
  </head>
   <body>
-    <div id="includedContent"></div>
-
-    <!--<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="https://livewaterfarm.net/">Livewater Farm & Dairy</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" href="https://livewaterfarm.net/">Home<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="https://livewaterfarm.net/about.html">About<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="https://livewaterfarm.net/contact.php">Contact<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="https://livewaterfarm.net/menu.html">Product Menu<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="https://livewaterfarm.net/gallery.html">Gallery<span class="sr-only"></span></a>
-        </li>
-      <!--<li class="nav-item">
-          <a class="nav-link" href="https://livewaterfarm.net/stand/index.php">Shop Farm Stand</a>
-        </li>-->
-      <!--<li class="nav-item">
-          <a class="nav-link" href="https://livewaterfarm.net/shop.html">Shop Farm Stand</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header> -->
-
+  
+  <div id="includedMenu"></div>
 
 <main role="main">
 
-    <div class="container">
-	<div class="bg" style="background-image: url('images/pasturecows_header2.jpg');
-						background-size: cover; 
-                        background-position: center; 
-                        height: 50vh;">
-		<div class="head1">
-		
-			<h1 class="display-3">Livewater Farm & Dairy</h1>
-			<p>Livewater Farm &amp; Dairy &#8211; a Vermont grass based dairy farm producing cheese and maple syrup</p>
-			<p><a class="btn btn-primary btn-lg" href="http://localhost/livewater/shop.html" role="button">Shop Farm Stand &raquo;</a></p>
-			<!--<p><a class="btn btn-primary btn-lg" href="https://livewaterfarm.net/shop.html" role="button">Shop Farm Stand &raquo;</a></p> -->
-	  	</div>
-	</div>
-    </div>
+  <div id="includedContent"></div>
+
 <?php
 if (isset($_POST['submitted'])) { // Handle the form.
 	// Trim all the incoming data:

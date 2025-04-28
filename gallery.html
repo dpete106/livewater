@@ -19,6 +19,9 @@
     </script> -->
 	<script> 
     $(function(){
+      $("#includedMenu").load("http://localhost/livewater/includes/header_menu.html"); 
+    });
+    $(function(){
       $("#includedContent").load("http://localhost/livewater/includes/main_header.html"); 
     });
     </script> 
@@ -116,29 +119,12 @@
 
   </head>
   <body>
-  <div id="includedContent"></div>
-    <!--<header>
-	</header> -->
+  
+  <div id="includedMenu"></div>
 
 <main role="main">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <!-- <div class="jumbotron"> -->
-    <div class="container">
-	<div class="bg" style="background-image: url('images/pasturecows_header2.jpg');
-						background-size: cover; 
-                        background-position: center; 
-                        height: 50vh;">
-		<div class="head1">
-		
-			<h1 class="display-3">Livewater Farm & Dairy</h1>
-			<p>Livewater Farm &amp; Dairy &#8211; a Vermont grass based dairy farm producing cheese and maple syrup</p>
-			<p><a class="btn btn-primary btn-lg" href="http://localhost/livewater/shop.html" role="button">Shop Farm Stand &raquo;</a></p>
-			<!-- <p><a class="btn btn-primary btn-lg" href="https://livewaterfarm.net/shop.html" role="button">Shop Farm Stand &raquo;</a></p> -->
-	  	</div>
-	</div>
-    </div>
-  <!-- </div> -->
+  <div id="includedContent"></div>
 
   <div class="container">
         <h2>Livewater Farm & Dairy Photo Gallery</h2>
