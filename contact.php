@@ -25,16 +25,15 @@ session_start();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script> 
     $(function(){
-      $("#includedMenu").load("http://localhost/livewater/includes/header_menu.html"); 
+      $("#includedContent").load("http://localhost/livewater/includes/main_header.html"); 
     });
     $(function(){
-      $("#includedContent").load("http://localhost/livewater/includes/main_header.html"); 
+      $("#includedMenu").load("http://localhost/livewater/includes/header_menu.html"); 
     });
     </script> 
 
     <!-- Bootstrap core CSS -->
     <link href="http://localhost/livewater/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="https://livewaterfarm.net/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Favicons -->
 	<link rel="icon" href="/favicon.ico">
@@ -120,10 +119,8 @@ session_start();
       }
     </style>
     <!-- Custom styles for this template -->
-    <!-- <link href="https://livewaterfarm.net/css/home.css" rel="stylesheet"> -->
     <link href="http://localhost/livewater/css/home.css" rel="stylesheet">
 
-    <!-- <link href="https://livewaterfarm.net/css/contact.css" rel="stylesheet"> -->
     <link href="http://localhost/livewater/css/contact.css" rel="stylesheet">
  </head>
   <body>
@@ -213,7 +210,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
     </form> -->
 <div class="col-lg-12">
 	<h2>Contact Livewater Farm & Dairy</h2>
-	<form class="form-signin" action="https://livewaterfarm.net/contact.php" method="post">
+	<form class="form-signin" action="http://localhost/livewater/contact.php" method="post">
 			<div class="form-group">
 			<!--<label for="inputFirstName">First Name</label>-->
 			<input type="text" class="form-control" id="inputFirstName" placeholder="FirstName" name="first_name" value="" required autofocus>
@@ -257,9 +254,8 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 -->	
-<!--<script src="https://livewaterfarm.net/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body> -->
 <script src="http://localhost/livewater/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
-.
+
 </html>
 <?php
 
