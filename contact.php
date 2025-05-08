@@ -31,7 +31,9 @@ session_start();
       $("#includedMenu").load("http://localhost/livewater/includes/header_menu.html"); 
     });
     </script> 
-
+	
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	 
     <!-- Bootstrap core CSS -->
     <link href="http://localhost/livewater/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -147,7 +149,6 @@ if (isset($_POST['submitted'])) { // Handle the form.
 
 	if ($fn && $ln && $ms && $e) { // If everything's OK...
 				$ef = $e;
-				//$et = 'livewaterdairy@gmail.com';
 				$et = 'farmer@livewaterfarm.net';
 				
 	//	$emailto = $et;
@@ -185,6 +186,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	'Content-Type: text/plain; charset=UTF-8' . "\r\n";
     $params = '-f ' . $emailfrom;	
 		
+		$test = 1;
 		$test = mail($emailto, $subject, $messagebody, $headers, $params);
 		if ($test){
 			echo '<div class="alert alert-success">Thank you for sending a message to Livewater Farm & Dairy.</div>';
@@ -210,7 +212,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
     </form> -->
 <div class="col-lg-12">
 	<h2>Contact Livewater Farm & Dairy</h2>
-	<form class="form-signin" action="http://localhost/livewater/contact.php" method="post">
+	<form class="form-signin" action="http://localhost/livewater/contact.php" method="post" onsubmit="return validateRecaptcha()";>
 			<div class="form-group">
 			<!--<label for="inputFirstName">First Name</label>-->
 			<input type="text" class="form-control" id="inputFirstName" placeholder="FirstName" name="first_name" value="" required autofocus>
@@ -232,9 +234,27 @@ if (isset($_POST['submitted'])) { // Handle the form.
 			</div>
 		
 			<div class="form-group">
+			
+			<div class="g-recaptcha" data-sitekey="6Lch8SorAAAAAB8vtHs6hsvk4hbm6M0ZMQKhXskg"></div>
+			
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
 			<input type="hidden" name="submitted" value="TRUE" />
 			</div>
+			
+			<script type="text/javascript">
+			var onloadCallback = function() {
+			};
+			function validateRecaptcha() {
+				var response = grecaptcha.getResponse();
+				if (response.length === 0) {
+					alert("you are a robot!");
+					return false;
+				} else {
+				 //alert("validated");
+					return true;
+				}
+			}
+			</script>
 	</form>
 </div>
 <div class="col-lg-12">
